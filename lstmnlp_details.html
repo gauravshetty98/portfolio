@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextBuys.co | Project Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+    }
+    .project-section img {
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    .highlight {
+      background-color: #f3f4f6;
+      padding: 0.5rem 1rem;
+      border-left: 4px solid #3b82f6;
+      margin: 1rem 0;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
+          <div>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
+      <div class="max-w-4xl text-left project-section">
+        <h1 class="text-3xl font-bold mb-4">Deep Learning for Sentiment Analysis: IMDb Movie Reviews with LSTMs</h1>
+        <p class="text-gray-600 mb-6">This project explores sentiment analysis on a movie reviews dataset using bi-directional Long Short-Term Memory (LSTM) networks, showcasing the application of deep learning in Natural Language Processing (NLP). 
+          The model is designed to analyze the sentiment of movie reviews, leveraging one-hot encoding for vectorization to capture contextual dependencies in text data. 
+          A sequential neural network with multiple LSTM layers and a dense output layer using a sigmoid activation function was implemented for classification. 
+          The project examines the network architecture and its performance, highlighting the effectiveness of recurrent neural networks (RNNs) in sentiment analysis.</p>
+
+        <img src="./assets/nextbuys_overview.jpeg" alt="NextBuys Overview" class="w-full h-auto">
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Objective</h2>
+        <p class="text-gray-600 mb-6">The aim of this project was to explore the applications of deep learning algorithms like Long Short-Term Memory networks in the field of Natural Language Procesing. 
+          The study demonstrates the use of RNNs and their performance in classifying whether a particular moview review was positive or negative. </p>
+
+        <div class="highlight">
+          <strong>Key Focus:</strong> Implementing a recurrent neural network and comparing its performance with other architectures for NLP tasks
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Methodology</h2>
+        <p class="text-gray-600 mb-4">The dataset is preprocessed through one-hot encoding to transform text into numerical vectors, allowing the LSTM model to effectively capture word dependencies. 
+          A bi-directional LSTM architecture is implemented with multiple layers followed by a sigmoid activation function for binary classification. 
+          The model is trained and evaluated using standard metrics such as accuracy, precision, recall, and F1-score, while techniques like dropout regularization are applied to prevent overfitting.
+        </p>
+
+        <img src="./assets/nextbuys_methodology.jpeg" alt="Methodology Diagram" class="w-full h-auto">
+
+        <p class="text-gray-600 mb-6">The model performed comparatively better than lexicon or rule based approaches like VADER</p>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Tools & Technologies</h2>
+        <ul class="list-disc list-inside text-gray-600 mb-6">
+          <li>Python for data processing and algorithm implementation</li>
+          <li>Tensorflow, Keras and Scikit-learn for model implementation and evaluation</li>
+          <li>Github for version control</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Outcome</h2>
+        <p class="text-gray-600 mb-6">The study underscores the importance of deep learning in NLP applications, particularly in understanding sentiment and context within textual data. 
+          The findings suggest that LSTMs are well-suited for sentiment analysis, paving the way for further improvements using attention mechanisms or transformer-based models.
+        </p>
+
+        <img src="./assets/nextbuys_result.jpeg" alt="Project Outcome" class="w-full h-auto">
+
+        <div class="flex space-x-4 mt-8">
+          <a href="https://github.com/gauravshetty/nextbuys" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View on GitHub</a>
+          <a href="https://nextbuys.co" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Visit Website</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Gaurav Shetty</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .project-card {
+      transition: background-color 0.3s ease;
+    }
+    .project-card:hover {
+      background-color: #f3f4f6;
+    }
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .keyword {
+      background-color: #e5e7eb;
+      color: #374151;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+    }
+    .filter-btn {
+      background-color: #e5e7eb;
+      color: #374151;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background-color: #3b82f6;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
+          <div>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+        <a href="https://whatsapp.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">WhatsApp</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
+      <div class="max-w-4xl text-left">
+        <h2 class="text-3xl font-semibold mb-6">Projects</h2>
+        <p class="text-base text-gray-600 mb-10">Explore my projects across various domains like machine learning, NLP, computer vision, and more.</p>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-4 mb-8">
+          <button class="filter-btn active" data-category="all" id="all">All</button>
+          <button class="filter-btn" data-category="computer-vision" id="computer-vision">Computer Vision</button>
+          <button class="filter-btn" data-category="nlp" id="nlp">NLP</button>
+          <button class="filter-btn" data-category="statistical-modeling" id="statistical-modeling">Statistical Modeling</button>
+          <button class="filter-btn" data-category="data-analytics" id="data-analytics">Data Analytics</button>
+          <button class="filter-btn" data-category="business-intelligence" id="business-intelligence">Business Intelligence</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="data-analytics">
+            <img src="./assets/nextbuys.jpeg" alt="NextBuys.co" class="w-full h-40 object-cover rounded-md mb-4">
+            <h4 class="text-lg font-medium mb-2">NextBuys.co</h4>
+            <p class="text-sm text-gray-600 mb-4">A recommendation system that suggests products based on user behavior and similarity metrics.</p>
+            <div class="keywords">
+              <span class="keyword">Python</span>
+              <span class="keyword">Pandas</span>
+              <span class="keyword">Scikit-learn</span>
+            </div>
+            <a href="./nextbuys_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
+          </div>
+
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="computer-vision">
+            <img src="./assets/attack.jpeg" alt="Adversarial Attacks" class="w-full h-40 object-cover rounded-md mb-4">
+            <h4 class="text-lg font-medium mb-2">Adversarial Attacks & Defenses</h4>
+            <p class="text-sm text-gray-600 mb-4">Research on inference attacks in machine learning and methods to defend against them.</p>
+            <div class="keywords">
+              <span class="keyword">TensorFlow</span>
+              <span class="keyword">Keras</span>
+              <span class="keyword">OpenCV</span>
+            </div>
+            <a href="./inferenceattack_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
+          </div>
+
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp">
+            <img src="./assets/nlp_project.jpeg" alt="NLP Project" class="w-full h-40 object-cover rounded-md mb-4">
+            <h4 class="text-lg font-medium mb-2">Assessing Heart Failure Risk: Statistical Modeling with Logistic Regression</h4>
+            <p class="text-sm text-gray-600 mb-4">Analyst survival chance of heart failure patients using statistical-modeling and interpreted model results</p>
+            <div class="keywords">
+              <span class="keyword">NLTK</span>
+              <span class="keyword">spaCy</span>
+              <span class="keyword">VADER</span>
+            </div>
+            <a href="./regerssionmodel_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
+          </div>
+
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp">
+            <img src="./assets/nlp_project.jpeg" alt="NLP Project" class="w-full h-40 object-cover rounded-md mb-4">
+            <h4 class="text-lg font-medium mb-2">Deep Learning for Sentiment Analysis: IMDb Movie Reviews with LSTMs</h4>
+            <p class="text-sm text-gray-600 mb-4">Implemented a Bi-directional LSTM to perform sentiment analysis on movie reviews</p>
+            <div class="keywords">
+              <span class="keyword">NLTK</span>
+              <span class="keyword">spaCy</span>
+              <span class="keyword">VADER</span>
+            </div>
+            <a href="./lstmnlp_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
+          </div>
+
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp">
+            <img src="./assets/nlp_project.jpeg" alt="NLP Project" class="w-full h-40 object-cover rounded-md mb-4">
+            <h4 class="text-lg font-medium mb-2">ML-Driven Industry Analytics: LinkedIn, BERT, and GIS in Action</h4>
+            <p class="text-sm text-gray-600 mb-4">Combined data analysis with machine learning and Linkedin API to produce customised Industry analytics</p>
+            <div class="keywords">
+              <span class="keyword">BERT</span>
+              <span class="keyword">REST API</span>
+              <span class="keyword">GIS</span>
+              <span class="keyword">Cosine Similarity</span>
+            </div>
+            <a href="./monty_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
+          </div>
+        </div>
+
+        <footer class="bg-white text-center py-8 mt-10 mb-10">
+          <p class="text-sm text-gray-600">Bringing data to life, one project at a time.</p>
+          <div class="flex justify-center space-x-4 mt-4">
+            <a href="mailto:gaurav@example.com" class="text-gray-600 hover:text-gray-800"><i data-lucide="mail"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="linkedin"></i></a>
+            <a href="https://github.com" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="github"></i></a>
+          </div>
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const category = button.getAttribute('data-category');
+        filterProjects(category);
+      });
+    });
+
+    function filterProjects(category) {
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Check URL hash to apply initial filter
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        const button = document.getElementById(hash);
+        if (button) {
+          button.click();
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

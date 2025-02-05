@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience | Gaurav Shetty</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .experience-card {
+      transition: background-color 0.3s ease;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1rem 0;
+      width: 100%;
+    }
+    .accordion-header {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-content {
+      display: none;
+      padding-top: 1rem;
+    }
+    .accordion-content p {
+      margin-bottom: 0.75rem; /* Adds spacing between each paragraph */
+      line-height: 1.6; /* Improves text readability */
+    }
+    .accordion-content.active {
+      display: block;
+    }
+    .timeline-container {
+      display: flex;
+      gap: 2rem;
+    }
+    .timeline {
+      position: relative;
+      width: 3px;
+      background: #d1d5db;
+    }
+    .timeline-marker {
+      position: absolute;
+      left: -33px;
+      font-size: 0.7rem;
+      color: #6b7280;
+      background: white;
+      padding: 0 5px;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .experience-section {
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    .experience-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .experience-header img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .methodology-image {
+      width: 100%; /* Makes the image span the full width */
+      max-height: 300px; /* Limits the height for consistency */
+      object-fit: cover; /* Ensures proper cropping for different image sizes */
+      border-radius: 8px; /* Adds slight rounding for aesthetics */
+      margin-bottom: 1rem; /* Provides spacing below the image */
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <aside class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
+          <div>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+        <a href="https://whatsapp.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">WhatsApp</a>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
+      <div class="max-w-4xl text-left">
+        <h2 class="text-3xl font-semibold mb-6">Professional Experience</h2>
+        <p class="text-base text-gray-600 mb-10">Explore my work experience in data science, analytics, and system architecture roles.</p>
+
+        <div class="timeline-container">
+          <div class="timeline">
+            <div class="timeline-marker" style="top: 0;">Dec 2024</div>
+            <div class="timeline-marker" style="bottom: 0;">May 2024</div>
+          </div>
+          <div class="experience-section">
+            <div class="experience-header">
+              <img src="./assets/pgw.jpeg" alt="PGW Logo">
+              <div>
+                <h3 class="text-lg font-medium">Philadelphia Gas Works</h3>
+                <p class="text-sm text-gray-600">Statistics and Economics Intern | May 2024 - Dec 2024</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">As the sole Data Science intern of the customer programs department, my roles primarily involved developing predictive models and conducting statistical analyses on PGW’s customer data. 
+              My responsibilities spanned forecasting energy burdens, monthly customer counts, evaluating the impact of campaigns and informing data-driven communication strategies. 
+              I delivered numerous projects, each involving collaboration with cross-functional teams, understanding their requirements, gathering useful data and providing actionable insights and recommendations to stakeholders.
+              Some of my highest-impact projects completed at PGW are elaborated below.	</p>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Monthly Customer Enrollment Forecasting Using Time-Series Analysis</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong> To develop a model to help with budgeting and resource allocation by forecasting the monthly number of customers enrolling in specific programs.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> The model provided a reliable way to predict monthly enrollments, enabling the organization to plan budgets, allocate resources more effectively, and optimize programs. 
+                  By accounting for seasonality and external factors, it significantly improved the accuracy of quarterly forecasts and supported smarter decision-making.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I used the Prophet time series model to better capture the seasonality in the data, achieving a mean absolute percentage error of less than 10%.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong> I cleaned and preprocessed the data using <b>Python</b> and <b>SQL</b>, then developed the model in <b>Python</b>. The final results were delivered through an interactive <b>Excel dashboard</b>, providing easy access and usability.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> The most challenging aspect of the project was building the model. I addressed this by conducting extensive research, experimenting with various models, and fine-tuning them iteratively to optimize performance and ensure the best results.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong> The model was well-received by the team for its accuracy, accessibility, and ability to incorporate external factors into projections. 
+                  These projections were reviewed during monthly meetings to evaluate customer growth and optimize budget allocation for discount programs.</p>
+              </div>
+            </div>
+
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Analysis of Low-Income Customer Behavior</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong> The company wanted to analyze the effectiveness and participation rates of various financial assistance programs and identify the major factors affecting these participation rates.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> The analysis helped the organization gain a deeper understanding of its low-income customer base and address critical business questions, such as identifying factors affecting participation rates, 
+                  evaluating the effectiveness of existing communication strategies, uncovering barriers to program engagement, and determining correlations between demographic or behavioral patterns and program participation.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I performed an exploratory analysis on a dataset of over 50,000 customers, using pivot tables, scatter plots, histograms, and data grouping to identify patterns, trends, and feature relationships.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I utilized Python and SQL for data cleaning and preprocessing, with analysis and visualizations created in Tableau.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> Cleaning and merging data from multiple sources was a key challenge, which I effectively addressed using Python's pandas library.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong> The analysis revealed various factors, such as age and assistance type, that affected participation rates. It also raised new questions about whether current outreach methods were effective, 
+                  forming the basis for a survey conducted among customers to explore similar questions.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Integrating City Government Datasets to Identify Potential Candidates for Financial Assistance Programs</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong> As an intern, one of my tasks was to research publicly available datasets that could help identify potential customers for financial assistance programs.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> This initiative ensured early recognition of low-income customers, enabling better financial aid distribution, reducing payment delinquencies, and optimizing the utilization of government-supported program budgets.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I researched publicly available datasets from sources like the Census and OpenDataPhilly. Using these sources, 
+                  Performed EDA on these sources to locate low-income housing locations and identify potential customers for targeted outreach.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I preprocessed the data using Python to standardize and align it with the company’s formatting before merging it with our customer data.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> The main challenge was identifying publicly available datasets that addressed key organizational issues while ensuring data quality. I tackled this by prioritizing the organization's challenges, 
+                  researching datasets relevant to the top problems, and focusing on government-provided or well-documented data to maintain quality standards.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  I delivered a list of potential leads for low-income programs, enabling the team to execute targeted outreach campaigns and inform customers about financial assistance programs they might qualify for.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Energy Burden Forecasting and Analysis</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  The purpose of this project was to identify disparities in energy usage and energy burden between customer programs, forecast future burdens, 
+                  and provide actionable insights through a user-friendly dashboard.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> This tool provided a deeper understanding of customer energy usage, helping the organization reduce operational inefficiencies, 
+                  enhance program performance, and better support customers with high energy burdens.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I integrated city-provided property assessment data with customer energy usage records using SQL, enabling an analysis of energy consumption alongside housing attributes 
+                  such as construction year, living area, and building conditions.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I developed an interactive Tableau dashboard to visualize energy usage trends across customer programs. 
+                  The dashboard provided detailed comparisons based on housing attributes like construction year and living area. 
+                  Additionally, I incorporated a feature to estimate energy burden using historical averages, total customer counts, and customizable group definitions for tailored analysis.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> The biggest challenge was creating an interactive Tableau dashboard that directly addressed business needs while allowing users the flexibility to explore the data further. 
+                  I overcame this by studying effective dashboard designs, collaborating closely with senior team members to understand stakeholder priorities, and organizing the dashboard into clear, functional sections. Using SQL and Tableau, 
+                  I incorporated essential features and ensured the tool was intuitive and impactful.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  I created a comprehensive Tableau dashboard that offered insights into energy usage patterns, facilitated comparisons between customer programs, 
+                  and provided forecasting capabilities for energy burden, significantly improving program analysis and decision-making.</p>
+              </div>
+            </div>
+
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Survey to Explore Financial Assistance Barriers</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  Previous analysis revealed age as a key factor affecting participation rates in financial assistance programs. 
+                  To further explore this and address broader questions surrounding low participation rates, I conducted a survey to assess program awareness, effectiveness, and the impact of various factors on engagement.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> The survey provided critical insights into customer perceptions of financial assistance programs, the effectiveness of existing outreach campaigns, and areas for improvement. 
+                  By addressing key business questions, it enabled the organization to refine awareness efforts, enhance program engagement, and optimize communication strategies to better meet customer needs.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I spearheaded the survey with the help of Bellomy Research among 900 customers. The survey posed questions related to program awareness, preferred communication methods, customer satisfaction, and other relevant topics.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I merged the survey responses with customer data using Excel and derived analytical insights using Tableau and Python.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> Formatting the survey responses for analysis was a significant hurdle, particularly because much of the data was free text. 
+                  I addressed this by using Excel and Python to preprocess and organize the responses into a structured format, ensuring they were ready for analysis.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  The analysis identified ineffective communication channels and highlighted preferred outreach methods for different customer groups. 
+                  These findings enabled the organization to refine awareness campaigns, introduce new outreach strategies, and improve overall program engagement and reach.</p>
+              </div>
+            </div>
+
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Analysing the effectiveness of our recertification strategy</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  The objective of this project was to analyze the annual recertification process required for customers to remain enrolled in low-income programs, 
+                  identify stages with the highest drop-off rates, assess its effectiveness, and provide insights to help the organization strategize and forecast future customer retention.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> The analysis provided a deeper understanding of the recertification process, helping the organization reduce customer attrition, 
+                  improve the efficiency of their programs, and better anticipate recertification volumes to allocate resources effectively.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> Data preprocessing was done using SQL and data visualization was done using Tableau. Developed a dashboard to track customer retention through each stage, identify drop-off points, and visualize future recertifications.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I merged the survey responses with customer data using Excel and derived analytical insights using Tableau and Python.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> The biggest challenge was visualizing the recertification process, as its 45-day timeline varied for each customer, making it difficult to showcase monthly drop-offs. Unclean data further complicated the task. 
+                  I addressed this by performing data aggregation and grouping customers by their stage and remaining days in the process, enabling clear and interpretable visualizations that highlighted monthly drop-offs effectively.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  The dashboard helped in identifying stages that faced the most drop-off thus improving the overall process, it also provided details about upcoming recertifications helping the organization in better planning</p>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+
+        <div class="timeline-container mt-10">
+          <div class="timeline">
+            <div class="timeline-marker" style="top: 0;">Jul 2023</div>
+            <div class="timeline-marker" style="bottom: 0;">Nov 2020</div>
+          </div>
+          <div class="experience-section">
+            <div class="experience-header">
+              <img src="./assets/jio.jpeg" alt="Jio Logo">
+              <div>
+                <h3 class="text-lg font-medium">Reliance Jio Infocomm LTD</h3>
+                <p class="text-sm text-gray-600">Solutions Architect | Nov 2020 - Jul 2023</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">I was part of the Design and Architecture team at the company, where I played a pivotal role in developing system designs and architectures based on business requirements. 
+              Some of the systems I designed include an online SIM ordering and delivery system, an improved JioPhone sales system, the integration of new telecom regions into the existing architecture, and more. 
+              I also oversaw the delivery of these designs, which involved regular meetings with various development teams and resolving any issues that arose until deployment in production. In addition to system design, 
+              I developed Python tools for the team to streamline various tasks and reduce issue analysis time. Further details on the systems and tools I designed are provided below.</p>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Analysing the effectiveness of our recertification strategy</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  The company wanted a system that would allow users to order an activated SIM card directly from the company website or mobile app and have it delivered to their doorstep.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> This system aimed to increase the reach of our products and make it easier for customers to place orders. As no similar system was available in the market at the time, it gave our product a competitive advantage.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I designed an end-to-end system that complied with data privacy and security guidelines. I also oversaw the development and deployment cycle of the system until it went live.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I used Soap and Postman to test various APIs in existing systems and SQL to query and validate data flow within the system. Azure DevOps was used for issue management and tracking.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> One of the main challenges was the scale of the project and the number of stakeholders involved. Designing a solution that met everyone’s requirements was difficult. 
+                  We addressed this by holding regular meetings with different teams to provide constant updates on the system and gather feedback. 
+                  Additionally, we ensured that every stakeholder understood the priority and importance of various requirements, facilitating a smooth design and development cycle.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  The system was deployed in record time, ahead of any other telecom provider, making our company the first to offer such a service at the time. Check it out for yourself:  https://www.jio.com/selfcare/selfkyc/</p>
+              </div>
+            </div>
+
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Central Coupon Management System</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  The organization ran multiple campaigns to onboard customers with various coupons and discount vouchers but lacked a central system to manage them, making it difficult to access historical data or use existing APIs.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> A centralized system would standardize campaign management, reducing complexity and ensuring consistency across all campaigns. 
+                  It would also simplify coupon generation, management, and validation for on-field employees for all campaigns</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> Researched through various historical campaigns by the company to find similarities in technical aspects. Designed a system utilizing existing APIs that had the capability to manage past campaigns and also seamlessly integrate new ones.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I used Soap and Postman to test and design APIs. SQL was used to do data validation and testing.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> The main challenge was analyzing historical campaigns and determining the most suitable APIs for the system, as each campaign had its own technical flow and coupon-generation APIs. 
+                  Understanding the diverse services and their integration was difficult. To overcome this, I thoroughly reviewed API documentation provided by the team, sought guidance from senior members when needed, and tested the APIs to understand data flow within the system. 
+                  This approach enabled me to build a final solution that met all requirements effectively.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  The solution was well received by the team and then became the cornerstone for various customer acquisition campaigns.</p>
+              </div>
+            </div>
+
+
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Python Programs for Operational Efficiency</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  I identified several areas within the company that could be improved through Python automation, such as reducing penalties from faulty invoices and addressing data extraction issues while fixing bugs. 
+                  I developed Python-based tools to streamline these processes and effectively resolve these challenges.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> The Python-based programs significantly enhanced efficiency by automating data extraction from invoices and PDFs, reducing manual effort and analysis time. 
+                  The software also identified defective invoices, minimizing penalties from external audits and improving compliance.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> The approach focused on identifying repetitive tasks that consumed significant time for the team and determining whether a software solution could perform them more efficiently. 
+                  After developing the tools, I presented them to the team, provided thorough documentation on their usage, and included guidelines for future modifications.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  The tools were developed in Python, with Azure DevOps used for version control. 
+                  Since the primary focus was working with PDF - extracting data and storing it in a structured format, libraries such as OpenCV, tabula-py, and PyMuPDF were utilized.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> </p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  The program detected 90% of defective bills, significantly reducing penalty costs for the company. It also enabled efficient extraction of text and image data from invoice PDFs, cutting analysis time for the testing team.</p>
+              </div>
+            </div>
+
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <h4 class="text-sm font-medium">Python Programs for Operational Efficiency</h4>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              
+              <div class="accordion-content">
+                
+                <p class="text-sm text-gray-600"><strong>Objective:</strong>  The organization wanted to improve the accessibility of our services and our products like JioPhone by introducing them to younger demographics. The current system didn’t have proper checks in place to cater to such needs.
+                </p>
+                
+                <p class="text-sm text-gray-600"><strong>Business Impact:</strong> Since JioPhone was a product that was extensively used in rural areas, such a system would increase the reach of an already popular product.</p>
+                
+                  <!-- 🔹 Image Placeholder -->
+                <img src="path-to-methodology-image.jpg" alt="Methodology Diagram" class="methodology-image">
+
+                <p class="text-sm text-gray-600"><strong>Methodology:</strong> I integrated the existing system with image recognition technology using Hyperverge to authenticate younger customers through valid identity documents. 
+                  Additionally, I maintained and updated the JioPhone sales system to ensure it remained aligned with our other workflows.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Tools:</strong>  I primarily used Visio and UML to visualize the system architecture and data flow. For data validation and testing, I utilized SQL, Postman, and SOAP.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Challenges:</strong> Understanding the JioPhone system was challenging due to its complexity and age. To overcome this, I thoroughly reviewed the available documentation, sought guidance from senior team members, 
+                  and conducted extensive testing of the system and its API calls. This hands-on approach helped me gain a comprehensive understanding of the system's logic and functionality.</p>
+                
+                <p class="text-sm text-gray-600"><strong>Results:</strong>  The system and the product are still an integral part of the company revenue and is one of the crucial products, especially popular among aged and rural customers. 
+                  URL: https://www.jio.com/en-in/jiophone
+                  </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="bg-white text-center py-8 mt-10 mb-10">
+          <p class="text-sm text-gray-600">Crafting solutions, one experience at a time.</p>
+          <div class="flex justify-center space-x-4 mt-4">
+            <a href="mailto:gaurav@example.com" class="text-gray-600 hover:text-gray-800"><i data-lucide="mail"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="linkedin"></i></a>
+            <a href="https://github.com" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="github"></i></a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        content.classList.toggle('active');
+        const icon = header.querySelector('i');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+  </script>
+</body>
+
+</html>

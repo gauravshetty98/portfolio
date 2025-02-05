@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextBuys.co | Project Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+    }
+    .project-section img {
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    .highlight {
+      background-color: #f3f4f6;
+      padding: 0.5rem 1rem;
+      border-left: 4px solid #3b82f6;
+      margin: 1rem 0;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
+          <div>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
+      <div class="max-w-4xl text-left project-section">
+        <h1 class="text-3xl font-bold mb-4">Assessing Heart Failure Risk: Statistical Modeling with Logistic Regression</h1>
+        <p class="text-gray-600 mb-6">This project explores the use of logistic regression for predicting heart failure survival, leveraging statistical modeling to understand key health predictors. 
+          Exploratory data analysis (EDA) was performed to uncover patterns and relationships within patient records. Techniques like stepwise selection were used to optimize model performance while maintaining interpretability. 
+          Model validity was assessed through residual analysis, while odds ratios provided insights into the impact of various health factors on survival outcomes. 
+          This study highlights the role of data-driven decision-making in healthcare analytics.</p>
+
+        <img src="./assets/nextbuys_overview.jpeg" alt="NextBuys Overview" class="w-full h-auto">
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Objective</h2>
+        <p class="text-gray-600 mb-6">This project aims to assess heart failure risk by leveraging logistic regression to predict patient survival based on key health indicators. 
+          It also explores the different statistical methods used for model optimization, feature selection and model explainability.</p>
+
+        <div class="highlight">
+          <strong>Key Focus:</strong> Using the various statistical analysis methods to analyse the model and interpret its results
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Methodology</h2>
+        <p class="text-gray-600 mb-4">The study begins with exploratory data analysis (EDA) to identify patterns, correlations, and outliers within patient records. 
+          Feature selection is performed using stepwise regression, ensuring that only the most relevant predictors contribute to the logistic regression model. 
+          Model accuracy and reliability are assessed through residual analysis and validation metrics such as chi square tests and confusion matrices. 
+        </p>
+
+        <img src="./assets/nextbuys_methodology.jpeg" alt="Methodology Diagram" class="w-full h-auto">
+
+        <p class="text-gray-600 mb-6">Additionally, odds ratios are computed to quantify the impact of individual health factors on survival probability, providing a clear interpretation of the model’s predictions.</p>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Tools & Technologies</h2>
+        <ul class="list-disc list-inside text-gray-600 mb-6">
+          <li>Used R as the main programming tool to conduct EDA.
+          </li>
+          <li> Utilized generalized linear models to build the logistic regression model.</li>
+          <li>Various statistical and EDA libraries present in R</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Outcome</h2>
+        <p class="text-gray-600 mb-6">The project shows in the emerging world of complex neural networks, how a statistical model can provide accurate results while maintaining the simplicity and being interpretable. 
+          It also showed key risk factors such as age, ejection fraction, and creatinine levels significantly influence survival probability, as evidenced by their odds ratios. </p>
+
+        <img src="./assets/nextbuys_result.jpeg" alt="Project Outcome" class="w-full h-auto">
+
+        <div class="flex space-x-4 mt-8">
+          <a href="https://github.com/gauravshetty/nextbuys" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View on GitHub</a>
+          <a href="https://nextbuys.co" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Visit Website</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

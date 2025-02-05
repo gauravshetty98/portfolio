@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Layout</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .project-card {
+      transition: background-color 0.3s ease;
+    }
+    .project-card:hover {
+      background-color: #f3f4f6;
+    }
+    .category-card {
+      font-family: 'Work Sans', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+    .skill-tag {
+      display: inline-block;
+      background-color: #f3f4f6;
+      color: #333;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .skill-tag:hover {
+      background-color: #e2e8f0;
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
+          <div>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+        <a href="https://whatsapp.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">WhatsApp</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
+      <div class="max-w-3xl text-left">
+        <h2 class="text-3xl font-semibold mb-4">👋</h2>
+        <h2 class="text-3xl font-semibold mb-4">I'm Gaurav Shetty</h2>
+        <p class="text-base text-gray-600">
+            Data-driven problem solver with a Master's in Data Science from Rutgers, leveraging hands-on projects, professional experience, and published research to create impactful solutions in machine learning, NLP, and statistical modeling.  
+        </p>
+        
+
+        <div class="flex items-center my-10">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-sm text-gray-500 uppercase">Education</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Education Section -->
+        <section class="mt-10">
+          <div class="project-card bg-white p-4 rounded-lg flex items-center space-x-4">
+            <img src="./assets/rutgers.jpeg" alt="Rutgers Logo" class="w-24 h-24 object-cover rounded-md">
+            <div>
+              <h4 class="text-sm font-medium mb-1">Rutgers University</h4>
+              <p class="text-xs text-gray-600 mb-1">Master of Science in Data Science</p>
+              <p class="text-xs text-gray-500">May 2025</p>
+              <p class="text-xs text-gray-600 mt-2">Focused on machine learning, statistical modeling, and data visualization. Completed projects on predictive modeling and natural language processing.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="flex items-center my-10">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-sm text-gray-500 uppercase">Projects</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Projects Section -->
+        <section class="mt-10">
+          <h3 class="text-sm font-medium mb-4">During my free time I try to implement concepts I find interesting in the data science field. 
+            This usually includes applications of concepts like NLP, Computer vision, and statistical modeling. 
+            Here's some of the recent projects I have been working on:
+          </h3>
+          <div class="space-y-6">
+            <div class="project-card bg-white p-4 rounded-lg flex items-center space-x-4">
+              <img src="./assets/nextbuys.jpeg" alt="NextBuys.co Project" class="w-24 h-24 object-cover rounded-md">
+              <div>
+                <h4 class="text-sm font-medium mb-1">NextBuys.co - A recommendation system</h4>
+                <p class="text-xs text-gray-600 mb-3">In this project we developed a website which was able to recommend different products to the user based on similarity metrics and rule mining algorithms.</p>
+              </div>
+            </div>
+            <div class="project-card bg-white p-4 rounded-lg flex items-center space-x-4">
+              <img src="./assets/attack.jpeg" alt="Adversarial Attacks Project" class="w-24 h-24 object-cover rounded-md">
+              <div>
+                <h4 class="text-sm font-medium mb-1">A Study on Adversarial Attacks and Defenses in Deep Learning Models</h4>
+                <p class="text-xs text-gray-600 mb-3">As machine learning becomes increasingly prevalent, it is crucial to recognize that these systems are also vulnerable to security issues.
+                  This project explores inference attacks on machine learning models, highlighting both attack strategies and defense mechanisms.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- More Work Section -->
+        <section class="mt-10">
+          <div class="flex items-center justify-center mb-4">
+            <i data-lucide="chevron-down" class="text-gray-600"></i>
+            <h3 class="text-sm font-medium mx-2 text-center">You can find my other projects below:</h3>
+            <i data-lucide="chevron-down" class="text-gray-600"></i>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <a href="projects.html#computer-vision" class="category-card block p-4 bg-blue-100 text-center rounded-lg shadow hover:bg-blue-200">📷 Computer Vision</a>
+            <a href="projects.html#nlp" class="category-card block p-4 bg-green-100 text-center rounded-lg shadow hover:bg-green-200">🔊 NLP</a>
+            <a href="projects.html#statistical-modeling" class="category-card block p-4 bg-yellow-100 text-center rounded-lg shadow hover:bg-yellow-200">📊 Statistical Modeling</a>
+            <a href="projects.html#data-analytics" class="category-card block p-4 bg-purple-100 text-center rounded-lg shadow hover:bg-purple-200">📊 Data Analytics</a>
+            <a href="projects.html#business-intelligence" class="category-card block p-4 bg-red-100 text-center rounded-lg shadow hover:bg-red-200">💼 Business Intelligence</a>
+          </div>
+        </section>
+        
+        <div class="flex items-center my-10">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-sm text-gray-500 uppercase">Experience</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Experience Section -->
+        <section class="mt-10">
+          <h3 class="text-sm font-medium mb-4">I also have experience working with data in professional settings. My work ranges from providing business insights based on in-depth analysis to 
+            designing system architectures for different business flows. Here's an overview of my experiences:
+          </h3>
+          <div class="space-y-6">
+            <div class="project-card bg-white p-4 rounded-lg">
+              <div class="flex items-start space-x-4">
+                <img src="./assets/pgw.jpeg" alt="Company Logo" class="w-16 h-16 object-cover rounded-md">
+                <div>
+                  <h4 class="text-sm font-medium">Philadelphia Gas Works</h4>
+                  <p class="text-xs text-gray-600">Statistics and Economics Intern</p>
+                  <p class="text-xs text-gray-500">May 2024 - Dec 2024</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-600 mt-3">As the sole Data Science intern of the customer programs department, my roles primarily involved developing predictive models and conducting statistical analyses on PGW’s customer data. My responsibilities spanned forecasting energy burdens, monthly customer counts, evaluating the impact of campaigns, and informing data-driven communication strategies. I delivered numerous projects, each involving collaboration with cross-functional teams, understanding their requirements, gathering useful data, and providing actionable insights and recommendations to stakeholders.</p>
+            </div>
+
+            <div class="project-card bg-white p-4 rounded-lg">
+              <div class="flex items-start space-x-4">
+                <img src="./assets/jio.jpeg" alt="Company Logo" class="w-16 h-16 object-cover rounded-md">
+                <div>
+                  <h4 class="text-sm font-medium">Reliance Jio Infocomm LTD</h4>
+                  <p class="text-xs text-gray-600">Solutions Architect</p>
+                  <p class="text-xs text-gray-500">Nov 2020 - Jul 2023</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-600 mt-3">I was part of the Design and Architecture team at the company, where I played a pivotal role in developing system designs and architectures based on business requirements. Some of the systems I designed include an online SIM ordering and delivery system, an improved JioPhone sales system, the integration of new telecom regions into the existing architecture, and more. I also oversaw the delivery of these designs, which involved regular meetings with various development teams and resolving any issues that arose until deployment in production. In addition to system design, I developed Python tools for the team to streamline various tasks and reduce issue analysis time.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="flex items-center my-10">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-sm text-gray-500 uppercase">Publication</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Publication Section -->
+        <section class="mt-10">
+          <h3 class="text-sm font-medium mb-4">Curious about my research? Explore my published papers and see how data turns into discovery:</h3>
+          <div class="space-y-6">
+            <a href="https://ieeexplore.ieee.org/document/9213206" target="_blank" class="block">
+              <div class="project-card bg-white p-4 rounded-lg flex items-center space-x-4">
+                <img src="./assets/ieee.jpeg" alt="Research Paper 1" class="w-24 h-24 object-cover rounded-md">
+                <div>
+                  <h4 class="text-sm font-medium mb-1">Sentiment Analysis and Classification on Twitter Spam Account Dataset</h4>
+                  <p class="text-xs text-gray-600 mb-1">Published in: IEEE Xplore</p>
+                  <p class="text-xs text-gray-500 mb-2">Jul 2020</p>
+                  <p class="text-xs text-gray-600">Applied VADER for sentiment analysis on Tweets and Random Forest to classify spam accounts with an accuracy of 94%</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="http://ieeexplore.ieee.org/document/9129348/" target="_blank" class="block">
+              <div class="project-card bg-white p-4 rounded-lg flex items-center space-x-4">
+                <img src="./assets/ieee.jpeg" alt="Research Paper 2" class="w-24 h-24 object-cover rounded-md">
+                <div>
+                  <h4 class="text-sm font-medium mb-1">Type-II Diabetes detection using Decision-tree based Ensemble of Classifiers</h4>
+                  <p class="text-xs text-gray-600 mb-1">Published in: IEEE Xplore</p>
+                  <p class="text-xs text-gray-500 mb-2">Sept 2019</p>
+                  <p class="text-xs text-gray-600">Compared ensemble classifiers for diabetes detection, XGBoost outperformed others with a maximum accuracy of 93.5%</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <div class="flex items-center my-10">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-sm text-gray-500 uppercase">Skills</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Skills Section -->
+        <section class="mt-10">
+          <div class="flex flex-wrap justify-center">
+            <span class="skill-tag">🐍 Python</span>
+            <span class="skill-tag">📊 R</span>
+            <span class="skill-tag">🔢 SQL</span>
+            <span class="skill-tag">📈 Tableau</span>
+            <span class="skill-tag">🐼 Pandas</span>
+            <span class="skill-tag">🌍 GeoPandas</span>
+            <span class="skill-tag">📉 Matplotlib</span>
+            <span class="skill-tag">🔥 PyTorch</span>
+            <span class="skill-tag">🎥 OpenCV</span>
+            <span class="skill-tag">🤖 TensorFlow</span>
+            <span class="skill-tag">🤗 HuggingFace</span>
+            <span class="skill-tag">🧠 Keras</span>
+            <span class="skill-tag">📊 Plotly</span>
+            <span class="skill-tag">🔍 Holoviews</span>
+            <span class="skill-tag">📚 Scikit-learn</span>
+            <span class="skill-tag">📬 Postman</span>
+            <span class="skill-tag">🧼 SOAP</span>
+            <span class="skill-tag">☁️ Azure DevOps</span>
+            <span class="skill-tag">🔧 GIT</span>
+          </div>
+        </section>
+
+        <footer class="bg-white text-center py-8 mt-10 mb-10">
+            <p class="text-sm text-gray-600">Bringing data to life, one project at a time.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+              <a href="mailto:gaurav@example.com" class="text-gray-600 hover:text-gray-800"><i data-lucide="mail"></i></a>
+              <a href="https://linkedin.com" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="linkedin"></i></a>
+              <a href="https://github.com" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="github"></i></a>
+            </div>
+          </footer>
+          
+          
+          
+          
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Layout</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+          <div>
+            <h1 class="text-lg font-bold">M. Naeem Tahir</h1>
+            <p class="text-sm text-gray-500">Software Engineer</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="about.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="user" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">About</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Articles</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-500">Socials</h2>
+        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+        <a href="https://whatsapp.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">WhatsApp</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 p-10 overflow-auto">
+      <h2 class="text-4xl font-bold mb-4">👋 I'm Muhammad Naeem Tahir</h2>
+      <p class="text-lg text-gray-600 max-w-2xl">
+        Frontend Focused full stack developer with 3+ Years of Experience. I love building scalable,
+        performance-optimized web apps passionate about creating impactful web products that enhance millions of lives.
+      </p>
+      <section class="mt-10">
+        <h3 class="text-2xl font-semibold mb-4">Yooo you wanna know more???</h3>
+        <div class="space-y-6">
+          <div class="project-card bg-white p-4 rounded-lg shadow-md">
+            <h4 class="text-xl font-semibold mb-1">TapCGPT</h4>
+            <p class="text-gray-600 mb-3">ChainGPT’s Addictive Clicker Game: Earn $CGPT Tokens with Every Tap!</p>
+          </div>
+          <div class="project-card bg-white p-4 rounded-lg shadow-md">
+            <h4 class="text-xl font-semibold mb-1">React Resources</h4>
+            <p class="text-gray-600 mb-3">Level Up Your React Projects with These Essential Open-Source Libraries!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
