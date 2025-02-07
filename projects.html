@@ -66,6 +66,20 @@
       max-width: 800px;
       margin: auto;
     }
+    .mobile-menu-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 50;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .mobile-menu-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
   </style>
 </head>
 
@@ -111,7 +125,7 @@
     </aside>
 
     <!-- Mobile menu button -->
-    <button onclick="toggleMenu()" class="absolute top-4 left-4 z-50 md:hidden bg-gray-800 text-white p-2 rounded-lg">
+    <button onclick="toggleMenu()" class="mobile-menu-button md:hidden">
       ☰
     </button>
 
