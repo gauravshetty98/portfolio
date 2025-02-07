@@ -46,14 +46,36 @@
       display: block;
     }
     .timeline-container {
-      display: flex;
-      gap: 2rem;
-    }
-    .timeline {
-      position: relative;
-      width: 3px;
-      background: #d1d5db;
-    }
+  display: flex;
+  gap: 2rem;
+  position: relative; /* Ensures it remains within the document flow */
+  z-index: 0; /* Prevents it from overlapping the sidebar */
+}
+
+.timeline {
+  position: relative;
+  width: 3px;
+  background: #d1d5db;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    z-index: 50; /* Ensures sidebar is above everything */
+  }
+
+  .timeline-container {
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    z-index: 0;
+  }
+
+  .timeline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
     .timeline-marker {
       position: absolute;
       left: -33px;
