@@ -4,13 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Layout</title>
+  <title>Gaurav's Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+    }
+  </script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -40,13 +47,14 @@
     .skill-tag:hover {
       background-color: #e2e8f0;
     }
+    
   </style>
 </head>
 
 <body class="bg-white">
   <div class="flex h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between">
+    <aside id="sidebar" class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
       <div>
         <div class="flex items-center space-x-3 mb-10">
           <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
@@ -57,19 +65,19 @@
         </div>
 
         <nav class="space-y-2">
-          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+          <a href="index.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
             <i data-lucide="home" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Home</span>
           </a>
-          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+          <a href="projects.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
             <i data-lucide="folder" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Projects</span>
           </a>
-          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+          <a href="experience.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
             <i data-lucide="briefcase" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Experience</span>
           </a>
-          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+          <a href="articles.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
             <i data-lucide="file-text" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Contact</span>
           </a>
@@ -83,6 +91,11 @@
         <a href="https://whatsapp.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">WhatsApp</a>
       </div>
     </aside>
+
+     <!-- Mobile menu button -->
+     <button onclick="toggleMenu()" class="absolute top-4 left-4 z-50 md:hidden bg-gray-800 text-white p-2 rounded-lg">
+      ☰
+    </button>
 
     <!-- Main Content -->
     <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
