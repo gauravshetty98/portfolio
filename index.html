@@ -11,8 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     function toggleMenu() {
       document.getElementById('sidebar').classList.toggle('-translate-x-full');
@@ -47,7 +45,20 @@
     .skill-tag:hover {
       background-color: #e2e8f0;
     }
-    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .nav-item i {
+      font-size: 1.25rem;
+    }
+    .content-container {
+      max-width: 800px;
+      margin: auto;
+    }
   </style>
 </head>
 
@@ -65,19 +76,19 @@
         </div>
 
         <nav class="space-y-2">
-          <a href="index.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
             <i data-lucide="home" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Home</span>
           </a>
-          <a href="projects.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
             <i data-lucide="folder" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Projects</span>
           </a>
-          <a href="experience.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
             <i data-lucide="briefcase" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Experience</span>
           </a>
-          <a href="articles.html" class="block p-2 rounded-lg text-gray-800 font-medium hover:bg-gray-200">
+          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
             <i data-lucide="file-text" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Contact</span>
           </a>
@@ -92,14 +103,14 @@
       </div>
     </aside>
 
-     <!-- Mobile menu button -->
-     <button onclick="toggleMenu()" class="absolute top-4 left-4 z-50 md:hidden bg-gray-800 text-white p-2 rounded-lg">
+    <!-- Mobile menu button -->
+    <button onclick="toggleMenu()" class="absolute top-4 left-4 z-50 md:hidden bg-gray-800 text-white p-2 rounded-lg">
       ☰
     </button>
 
     <!-- Main Content -->
-    <main id="main-content" class="flex-1 p-10 overflow-auto flex justify-center bg-white">
-      <div class="max-w-3xl text-left">
+    <main id="main-content" class="flex-1 p-6 md:ml-64 flex justify-center items-center">
+      <div class="content-container">
         <h2 class="text-3xl font-semibold mb-4">👋</h2>
         <h2 class="text-3xl font-semibold mb-4">I'm Gaurav Shetty</h2>
         <p class="text-base text-gray-600">
