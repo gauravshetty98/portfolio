@@ -142,7 +142,7 @@
           <button class="filter-btn" data-category="nlp" id="nlp">NLP</button>
           <button class="filter-btn" data-category="statistical-modeling" id="statistical-modeling">Statistical Modeling</button>
           <button class="filter-btn" data-category="data-analytics" id="data-analytics">Data Analytics</button>
-          <button class="filter-btn" data-category="business-intelligence" id="business-intelligence">Business Intelligence</button>
+          <!-- <button class="filter-btn" data-category="business-intelligence" id="business-intelligence">Business Intelligence</button> -->
         </div>
 
         <!-- Projects Grid -->
@@ -171,7 +171,7 @@
             <a href="./inferenceattack_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
 
-          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp">
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp statistical-modeling">
             <img src="./assets/regression.jpeg" alt="NLP Project" class="w-full h-40 object-cover rounded-md mb-4">
             <h4 class="text-lg font-medium mb-2">Assessing Heart Failure Risk: Statistical Modeling with Logistic Regression</h4>
             <p class="text-sm text-gray-600 mb-4">Analyst survival chance of heart failure patients using statistical-modeling and interpreted model results</p>
@@ -195,7 +195,7 @@
             <a href="./lstmnlp_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
 
-          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp">
+          <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp statistical-modeling data-analytics">
             <img src="./assets/monty.jpeg" alt="NLP Project" class="w-full h-40 object-cover rounded-md mb-4">
             <h4 class="text-lg font-medium mb-2">ML-Driven Industry Analytics: LinkedIn, BERT, and GIS in Action</h4>
             <p class="text-sm text-gray-600 mb-4">Combined data analysis with machine learning and Linkedin API to produce customised Industry analytics</p>
@@ -236,14 +236,15 @@
     });
 
     function filterProjects(category) {
-      document.querySelectorAll('.project-card').forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+  document.querySelectorAll('.project-card').forEach(card => {
+    const categories = card.getAttribute('data-category').split(' '); // Split categories
+    if (category === 'all' || categories.includes(category)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
     }
+  });
+}
 
     // Check URL hash to apply initial filter
     window.addEventListener('load', () => {
