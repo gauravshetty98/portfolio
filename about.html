@@ -4,22 +4,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Layout</title>
+  <title>Gaurav's Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .project-card {
+      transition: background-color 0.3s ease;
+    }
+    .project-card:hover {
+      background-color: #f3f4f6;
+    }
+    .category-card {
+      font-family: 'Work Sans', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+    .skill-tag {
+      display: inline-block;
+      background-color: #f3f4f6;
+      color: #333;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .skill-tag:hover {
+      background-color: #e2e8f0;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .nav-item i {
+      font-size: 1.25rem;
+    }
+    .content-container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .mobile-menu-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 50;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .mobile-menu-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+  </style>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-white">
   <div class="flex h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
+    <aside id="sidebar" class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
       <div>
         <div class="flex items-center space-x-3 mb-10">
-          <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
           <div>
-            <h1 class="text-lg font-bold">M. Naeem Tahir</h1>
-            <p class="text-sm text-gray-500">Software Engineer</p>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
           </div>
         </div>
 
@@ -28,49 +95,101 @@
             <i data-lucide="home" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Home</span>
           </a>
-          <a href="about.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
-            <i data-lucide="user" class="text-gray-600"></i>
-            <span class="text-gray-800 font-medium">About</span>
-          </a>
           <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
             <i data-lucide="folder" class="text-gray-600"></i>
             <span class="text-gray-800 font-medium">Projects</span>
           </a>
-          <a href="articles.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="about.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
             <i data-lucide="file-text" class="text-gray-600"></i>
-            <span class="text-gray-800 font-medium">Articles</span>
+            <span class="text-gray-800 font-medium">Contact</span>
           </a>
         </nav>
       </div>
 
       <div class="space-y-2">
-        <h2 class="text-sm text-gray-500">Socials</h2>
-        <a href="https://linkedin.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
-        <a href="https://github.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
-        <a href="https://whatsapp.com" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">WhatsApp</a>
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://www.linkedin.com/in/gaurav-shetty-3762a8150/" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com/gauravshetty98" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+        <a href="https://scholar.google.com/citations?user=lbqhXNoAAAAJ&hl=en" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Google Scholar</a>
       </div>
     </aside>
 
+    <!-- Mobile menu button -->
+    <button onclick="toggleMenu()" class="mobile-menu-button md:hidden">
+      ☰
+    </button>
+
     <!-- Main Content -->
-    <main id="main-content" class="flex-1 p-10 overflow-auto">
-      <h2 class="text-4xl font-bold mb-4">👋 I'm Muhammad Naeem Tahir</h2>
-      <p class="text-lg text-gray-600 max-w-2xl">
-        Frontend Focused full stack developer with 3+ Years of Experience. I love building scalable,
-        performance-optimized web apps passionate about creating impactful web products that enhance millions of lives.
-      </p>
-      <section class="mt-10">
-        <h3 class="text-2xl font-semibold mb-4">Yooo you wanna know more???</h3>
-        <div class="space-y-6">
-          <div class="project-card bg-white p-4 rounded-lg shadow-md">
-            <h4 class="text-xl font-semibold mb-1">TapCGPT</h4>
-            <p class="text-gray-600 mb-3">ChainGPT’s Addictive Clicker Game: Earn $CGPT Tokens with Every Tap!</p>
-          </div>
-          <div class="project-card bg-white p-4 rounded-lg shadow-md">
-            <h4 class="text-xl font-semibold mb-1">React Resources</h4>
-            <p class="text-gray-600 mb-3">Level Up Your React Projects with These Essential Open-Source Libraries!</p>
-          </div>
+    <main id="main-content" class="flex-1 p-6 md:ml-64 flex justify-center items-center">
+      <div class="content-container">
+        <h2 class="text-4xl font-bold mb-6 text-gray-800">Let's Connect!</h2>
+        <p class="text-gray-600 mb-6 text-lg">I hope you enjoyed exploring my projects! If you'd like to discuss any of these projects, collaborate, or just have a chat, feel free to connect with me through any of the platforms below.</p>
+        
+        <div class="grid grid-cols-2 gap-4 text-lg font-medium">
+          <a href="mailto:gaurav.shetty@rutgers.edu" class="flex items-center justify-center bg-gray-200 py-4 rounded-lg hover:bg-gray-300 transition">
+            📧 Email
+          </a>
+          <a href="https://www.linkedin.com/in/gaurav-shetty-3762a8150/" target="_blank" class="flex items-center justify-center bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition">
+            💼 LinkedIn
+          </a>
+          <a href="https://github.com/gauravshetty98" target="_blank" class="flex items-center justify-center bg-gray-800 text-white py-4 rounded-lg hover:bg-gray-900 transition">
+            🐙 GitHub
+          </a>
+          <a href="https://scholar.google.com/citations?user=lbqhXNoAAAAJ&hl=en" target="_blank" class="flex items-center justify-center bg-yellow-500 text-white py-4 rounded-lg hover:bg-yellow-600 transition">
+            📚 Google Scholar
+          </a>
         </div>
-      </section>
+
+        
+        <div class="flex items-center my-10">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="mx-4 text-sm text-gray-500 uppercase">Skills</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Skills Section -->
+        <section class="mt-10">
+          <div class="flex flex-wrap justify-center">
+            <span class="skill-tag">🐍 Python</span>
+            <span class="skill-tag">📊 R</span>
+            <span class="skill-tag">🔢 SQL</span>
+            <span class="skill-tag">📈 Tableau</span>
+            <span class="skill-tag">🐼 Pandas</span>
+            <span class="skill-tag">🌍 GeoPandas</span>
+            <span class="skill-tag">📉 Matplotlib</span>
+            <span class="skill-tag">🔥 PyTorch</span>
+            <span class="skill-tag">🎥 OpenCV</span>
+            <span class="skill-tag">🤖 TensorFlow</span>
+            <span class="skill-tag">🤗 HuggingFace</span>
+            <span class="skill-tag">🧠 Keras</span>
+            <span class="skill-tag">📊 Plotly</span>
+            <span class="skill-tag">🔍 Holoviews</span>
+            <span class="skill-tag">📚 Scikit-learn</span>
+            <span class="skill-tag">📬 Postman</span>
+            <span class="skill-tag">🧼 SOAP</span>
+            <span class="skill-tag">☁️ Azure DevOps</span>
+            <span class="skill-tag">🔧 GIT</span>
+          </div>
+        </section>
+
+        <footer class="bg-white text-center py-8 mt-10 mb-10">
+            <p class="text-sm text-gray-600">Bringing data to life, one project at a time.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+              <a href="mailto:gaurav.shetty@rutgers.edu" class="text-gray-600 hover:text-gray-800"><i data-lucide="mail"></i></a>
+              <a href="https://www.linkedin.com/in/gaurav-shetty-3762a8150/" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="linkedin"></i></a>
+              <a href="https://github.com/gauravshetty98" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="github"></i></a>
+            </div>
+          </footer>
+          
+          
+          
+          
+
+      </div>
     </main>
   </div>
 
