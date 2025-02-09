@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Loss Functions | Project Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+    }
+    .project-section img {
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    .highlight {
+      background-color: #f3f4f6;
+      padding: 0.5rem 1rem;
+      border-left: 4px solid #3b82f6;
+      margin: 1rem 0;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .nav-item i {
+      font-size: 1.25rem;
+    }
+    .content-container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .mobile-menu-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 50;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .mobile-menu-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 bg-gray-100 shadow-lg p-6 flex flex-col justify-between fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <div class="w-12 h-12 bg-gray-300 rounded-full"> <img src="./assets/profilepic.jpeg" alt="PGW Logo"></div>
+          <div>
+            <h1 class="text-lg font-bold">Gaurav Shetty</h1>
+            <p class="text-sm text-gray-600">Masters in Data Science</p>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <a href="index.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="home" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Home</span>
+          </a>
+          <a href="projects.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="folder" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Projects</span>
+          </a>
+          <a href="experience.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="briefcase" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Experience</span>
+          </a>
+          <a href="about.html" class="nav-item flex items-center space-x-3 p-2 rounded-lg cursor-pointer">
+            <i data-lucide="file-text" class="text-gray-600"></i>
+            <span class="text-gray-800 font-medium">Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-sm text-gray-600">Socials</h2>
+        <a href="https://www.linkedin.com/in/gaurav-shetty-3762a8150/" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">LinkedIn</a>
+        <a href="https://github.com/gauravshetty98" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Github</a>
+        <a href="https://scholar.google.com/citations?user=lbqhXNoAAAAJ&hl=en" target="_blank" class="nav-item p-2 rounded-lg cursor-pointer">Google Scholar</a>
+      </div>
+    </aside>
+
+    <!-- Mobile menu button -->
+    <button onclick="toggleMenu()" class="mobile-menu-button md:hidden">
+      ☰
+    </button>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1 p-6 md:ml-64 flex justify-center items-center">
+      <div class="content-container">
+        <h1 class="text-3xl font-bold mb-4">🧠 Adaptive Loss Functions with Meta-Learning & Genetic Programming</h1>
+        <p class="text-gray-600 mb-6">
+          This research focuses on using meta-learning and genetic programming to automatically create custom loss functions. 
+          Instead of manually designing them, this approach allows loss functions to adapt to different models, improving their performance and flexibility.
+        </p>
+
+        <img src="./assets/metalearning_overview.jpeg" alt="Meta-Learning Overview" class="w-full h-auto">
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Objective</h2>
+        <p class="text-gray-600 mb-6">
+          The goal of this research is to develop a system that automatically creates optimized loss functions using meta-learning and genetic programming. 
+          By analyzing different models and datasets, the system will generate loss functions tailored to specific tasks, improving adaptability and performance. 
+          Unlike manually designed loss functions, which often require extensive trial and error, this approach automates the process, making model training more efficient and reducing human effort. 
+          The end result could be a custom loss function that outperforms traditionally used ones, leading to better model accuracy and generalization.
+        </p>
+
+        <div class="highlight">
+          <strong>Learn More:</strong>
+          <ul class="list-disc list-inside text-blue-600 mt-2">
+            <li><a href="https://www.thinkautonomous.ai/blog/meta-learning/" target="_blank">Introduction to Meta-Learning</a></li>
+            <li><a href="https://deap.readthedocs.io/en/master/tutorials/advanced/gp.html" target="_blank">Genetic Programming and DEAP library</a></li>
+            <li><a href="https://www.datacamp.com/tutorial/loss-function-in-machine-learning" target="_blank">Understanding Loss Functions in Machine Learning</a></li>
+          </ul>
+        </div>
+        
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">What is Meta-Learning?</h2>
+        <p class="text-gray-600 mb-4">
+          Meta-learning has been defined in various ways across research, often leading to inconsistencies in terminology. To establish clarity, we present a definition adapted from <strong>Hospedales et al. (2022)</strong>:
+          <br>
+          <br>
+          <strong>    Meta Learning:</strong> The field concerned with the development
+          of self-adapting learning algorithms that learn to solve new tasks from utilizing past experiences of solving similar related tasks. During base learning a
+          set of inner learning algorithms are used to solve a set of tasks, minimizing
+          some inner objective. During meta-learning, an outer algorithm updates the
+          inner learning algorithms such that the models learn to improve on some predetermined outer objective.
+        </p>
+
+        <img src="./assets/metalearning_block.jpeg" alt="Meta-Learning Block" class="w-full h-auto">
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">What is Genetic Programming?</h2>
+        <p class="text-gray-600 mb-4">
+          Genetic Programming (GP) is an evolutionary algorithm that creates and improves functions by combining and modifying existing ones, much like natural selection. 
+          Instead of manually designing a loss function, GP generates different variations, tests their effectiveness, and evolves the best-performing ones over time.
+          <br>
+          <br>
+          Suppose a model isn't performing well with standard loss functions like Mean Squared Error (MSE) or Cross-Entropy Loss. Genetic programming can automatically mix and modify these, creating a new function.
+          Over multiple iterations, GP selects and evolves the best combinations, leading to a loss function that performs better for the specific model and dataset.
+        </p>
+
+        <img src="./assets/geneticprog_block.jpeg" alt="Genetic programming Block" class="w-full h-auto">
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Methodology</h2>
+        <p class="text-gray-600 mb-4">
+          Our research is actively exploring different architectures to optimize loss functions dynamically. The system consists of two main components:<br>
+          - <strong>Meta-Learner (Loss Function Optimizer)</strong>: Learns and refines loss functions based on model performance.<br>
+          - <strong>Base Model (CV Model)</strong>: Trained on image classification, detection, or segmentation tasks using the optimized loss functions.<br><br>
+          The workflow follows a two-loop approach:<br>
+          - <strong>Inner Loop</strong>: Trains the base model using the meta-learned loss function.<br>
+          - <strong>Outer Loop</strong>: Adjusts the meta-learner based on task performance feedback.<br><br>
+
+          Additionally, we plan to integrate LLMs (Large Language Models) to enhance the system with insights, explanations, and additional functionalities, making the optimization process more adaptable and interpretable.
+        </p>
+
+        <!-- <img src="./assets/genetic_programming_process.png" alt="Genetic Programming Process" class="w-full h-auto"> -->
+
+        <!-- <h2 class="text-2xl font-semibold mt-8 mb-2">Tools & Technologies</h2>
+        <ul class="list-disc list-inside text-gray-600 mb-6">
+          <li>PyTorch & TensorFlow for deep learning experiments</li>
+          <li>AutoML frameworks for meta-learning</li>
+          <li>DEAP (Distributed Evolutionary Algorithms in Python) for genetic programming</li>
+          <li>Scikit-learn for performance evaluation</li>
+        </ul> -->
+
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Potential Impact</h2>
+        <p class="text-gray-600 mb-6">
+          Adaptive loss functions have the potential to outperform traditional, hand-designed functions by dynamically adjusting
+          to different models and datasets. This research paves the way for more efficient and flexible deep learning architectures.
+        </p>
+
+        <!-- <div class="flex space-x-4 mt-8">
+          <a href="https://github.com/gauravshetty98/MetaLoss" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View on GitHub</a>
+        </div> -->
+
+        <footer class="bg-white text-center py-8 mt-10 mb-10">
+          <p class="text-sm text-gray-600">Bringing data to life, one project at a time.</p>
+          <div class="flex justify-center space-x-4 mt-4">
+            <a href="mailto:gaurav.shetty@rutgers.edu" class="text-gray-600 hover:text-gray-800"><i data-lucide="mail"></i></a>
+            <a href="https://www.linkedin.com/in/gaurav-shetty-3762a8150/" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="linkedin"></i></a>
+            <a href="https://github.com/gauravshetty98" target="_blank" class="text-gray-600 hover:text-gray-800"><i data-lucide="github"></i></a>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
