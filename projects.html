@@ -65,6 +65,7 @@
     .content-container {
       max-width: 800px;
       margin: auto;
+      min-height: 800vh; /* Adjust this value as needed */
     }
     .mobile-menu-button {
       position: absolute;
@@ -130,7 +131,7 @@
     </button>
 
     <!-- Main Content -->
-    <main id="main-content" class="flex-1 p-6 md:ml-64 flex justify-center items-center">
+    <main id="main-content" class="flex-1 p-6 md:ml-64 flex justify-start items-start">
       <div class="content-container">
         <h2 class="text-3xl font-semibold mb-6">Projects</h2>
         <p class="text-base text-gray-600 mb-10">Explore my projects across various domains like machine learning, NLP, computer vision, and more.</p>
@@ -149,24 +150,28 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="data-analytics">
             <img src="./assets/nextbuys.jpeg" alt="NextBuys.co" class="w-full h-40 object-cover rounded-md mb-4">
-            <h4 class="text-lg font-medium mb-2">NextBuys.co</h4>
+            <h4 class="text-lg font-medium mb-2">NextBuys.co - A recommendation system</h4>
             <p class="text-sm text-gray-600 mb-4">A recommendation system that suggests products based on user behavior and similarity metrics.</p>
             <div class="keywords">
-              <span class="keyword">Python</span>
-              <span class="keyword">Pandas</span>
-              <span class="keyword">Scikit-learn</span>
+              <span class="keyword">FP-Growth</span>
+              <span class="keyword">Cosine Similarity</span>
+              <span class="keyword">Collaborative Filtering</span>
+              <span class="keyword">SQL</span>
             </div>
             <a href="./nextbuys_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
 
           <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="computer-vision">
             <img src="./assets/attack.jpeg" alt="Adversarial Attacks" class="w-full h-40 object-cover rounded-md mb-4">
-            <h4 class="text-lg font-medium mb-2">Adversarial Attacks & Defenses</h4>
-            <p class="text-sm text-gray-600 mb-4">Research on inference attacks in machine learning and methods to defend against them.</p>
+            <h4 class="text-lg font-medium mb-2">A Study on Adversarial Attacks and Defenses in Deep Learning Models</h4>
+            <p class="text-sm text-gray-600 mb-4">Exploring inference attacks in machine learning and methods to defend against them.</p>
             <div class="keywords">
               <span class="keyword">TensorFlow</span>
               <span class="keyword">Keras</span>
               <span class="keyword">OpenCV</span>
+              <span class="keyword">ART</span>
+              <span class="keyword">PyTorch</span>
+              <span class="keyword">LIME</span>
             </div>
             <a href="./inferenceattack_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
@@ -174,11 +179,11 @@
           <div class="project-card bg-white p-4 rounded-lg shadow hover:shadow-lg" data-category="nlp statistical-modeling">
             <img src="./assets/regression.jpeg" alt="NLP Project" class="w-full h-40 object-cover rounded-md mb-4">
             <h4 class="text-lg font-medium mb-2">Assessing Heart Failure Risk: Statistical Modeling with Logistic Regression</h4>
-            <p class="text-sm text-gray-600 mb-4">Analyst survival chance of heart failure patients using statistical-modeling and interpreted model results</p>
+            <p class="text-sm text-gray-600 mb-4">Analysing survival chance of heart failure patients using statistical-modeling and interpreted model results</p>
             <div class="keywords">
-              <span class="keyword">NLTK</span>
-              <span class="keyword">spaCy</span>
-              <span class="keyword">VADER</span>
+              <span class="keyword">R</span>
+              <span class="keyword">Statistical Testing</span>
+              <span class="keyword">Model explainability</span>
             </div>
             <a href="./regerssionmodel_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
@@ -190,7 +195,9 @@
             <div class="keywords">
               <span class="keyword">NLTK</span>
               <span class="keyword">spaCy</span>
-              <span class="keyword">VADER</span>
+              <span class="keyword">PyTorch</span>
+              <span class="keyword">BERT</span>
+              <span class="keyword">Bi-directional LSTMs</span>
             </div>
             <a href="./lstmnlp_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
@@ -204,6 +211,7 @@
               <span class="keyword">REST API</span>
               <span class="keyword">GIS</span>
               <span class="keyword">Cosine Similarity</span>
+              <span class="keyword">Plotly Dash</span>
             </div>
             <a href="./monty_details.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">View Project</a>
           </div>
