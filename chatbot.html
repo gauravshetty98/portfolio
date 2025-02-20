@@ -73,13 +73,18 @@
                     body: JSON.stringify({ query: userMessage })
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 chatOutput.innerHTML += `<div><strong>Chatbot:</strong> ${data.response}</div>`;
                 
                 // Scroll to the latest message
                 chatOutput.scrollTop = chatOutput.scrollHeight;
             } catch (error) {
-                chatOutput.innerHTML += `<div style="color: red;"><strong>Error:</strong> Unable to connect to the chatbot.</div>`;
+                console.error("Error:", error);
+                chatOutput.innerHTML += `<div style="color: red;"><strong>Error:</strong> Unable to connect to the chatbot. ${error.message}</div>`;
             }
         }
     </script>
