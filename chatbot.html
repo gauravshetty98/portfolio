@@ -105,59 +105,83 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
 
-<script>
-    async function sendMessage() {
-        const chatInput = document.getElementById("chat-input");
-        const chatOutput = document.getElementById("chat-output");
-        const userMessage = chatInput.value.trim();
-        if (userMessage === "") return;
-
-        // Append user's message
-        chatOutput.innerHTML += `
-            <div class='flex justify-end'>
-                <div class='bg-gray-200 p-3 rounded-lg max-w-xl'>${userMessage}</div>
-            </div>
-        `;
-        chatInput.value = "";
-
-        try {
-            const response = await fetch("https://llm-connection.onrender.com/ask", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                mode: "cors",
-                cache: "no-cache",
-                credentials: "omit",
-                body: JSON.stringify({ query: userMessage })
-            });
-
-            if (!response.ok) {
-                throw new Error(`API Error: ${response.status} ${response.statusText}`);
-            }
-
-            const data = await response.json();
-
-            // Convert AI response from markdown to HTML
-            //const formattedResponse = marked.parse(data.response);
-            const formattedResponse = data.response;
-
-            // Append AI's response (formatted properly)
-            chatOutput.innerHTML += `
-                <div class='flex justify-start'>
-                    <div class='bg-blue-500 text-white p-3 rounded-lg max-w-xl leading-relaxed ai-response'>  
-                        ${formattedResponse}  
-                    </div>
-                </div>
-            `;
-
-            chatOutput.scrollTop = chatOutput.scrollHeight;
-        } catch (error) {
-            console.error("Error:", error);
-            chatOutput.innerHTML += `
-            <div class='text-red-500'><strong>Error:</strong> Unable to connect to the chatbot.</div>
-            `;
-        }
-    }
-</script>
+  <script>
+      function saveChatHistory() {
+          localStorage.setItem("chatHistory", document.getElementById("chat-output").innerHTML);
+      }
+  
+      function loadChatHistory() {
+          const chatOutput = document.getElementById("chat-output");
+          const savedHistory = localStorage.getItem("chatHistory");
+          if (savedHistory) {
+              chatOutput.innerHTML = savedHistory;
+          }
+      }
+  
+      function processLinks(responseText) {
+          // Ensure all links open in a new tab
+          return responseText.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
+      }
+  
+      async function sendMessage() {
+          const chatInput = document.getElementById("chat-input");
+          const chatOutput = document.getElementById("chat-output");
+          const userMessage = chatInput.value.trim();
+          if (userMessage === "") return;
+  
+          // Append user's message
+          chatOutput.innerHTML += `
+              <div class='flex justify-end'>
+                  <div class='bg-gray-200 p-3 rounded-lg max-w-xl'>${userMessage}</div>
+              </div>
+          `;
+          chatInput.value = "";
+  
+          saveChatHistory();  // Save chat after user message
+  
+          try {
+              const response = await fetch("https://llm-connection.onrender.com/ask", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  mode: "cors",
+                  cache: "no-cache",
+                  credentials: "omit",
+                  body: JSON.stringify({ query: userMessage })
+              });
+  
+              if (!response.ok) {
+                  throw new Error(`API Error: ${response.status} ${response.statusText}`);
+              }
+  
+              const data = await response.json();
+  
+              // Process AI response: Convert Markdown & Ensure links open in a new tab
+              let formattedResponse = marked.parse(data.response);
+              formattedResponse = processLinks(formattedResponse);
+  
+              // Append AI's response
+              chatOutput.innerHTML += `
+                  <div class='flex justify-start'>
+                      <div class='bg-blue-500 text-white p-3 rounded-lg max-w-xl leading-relaxed ai-response'>  
+                          ${formattedResponse}  
+                      </div>
+                  </div>
+              `;
+  
+              saveChatHistory();  // Save chat after AI response
+  
+              chatOutput.scrollTop = chatOutput.scrollHeight;
+          } catch (error) {
+              console.error("Error:", error);
+              chatOutput.innerHTML += `
+              <div class='text-red-500'><strong>Error:</strong> Unable to connect to the chatbot.</div>
+              `;
+          }
+      }
+  
+      // Load chat history on page reload
+      window.onload = loadChatHistory;
+  </script>
 
   <script>
     lucide.createIcons();
