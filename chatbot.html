@@ -14,6 +14,26 @@
       document.getElementById('sidebar').classList.toggle('-translate-x-full');
     }
   </script>
+  <style>
+        #chat-output p {
+            margin-bottom: 12px; /* Adds space between paragraphs */
+            line-height: 1.6; /* Improves readability */
+        }
+
+        #chat-output ul {
+            margin-left: 20px; /* Indents bullet points */
+            list-style-type: disc; /* Ensures bullet points are shown */
+        }
+
+        #chat-output li {
+            margin-bottom: 8px; /* Adds spacing between list items */
+        }
+
+        /* Ensure AI responses have good padding */
+        #chat-output .ai-response {
+            padding: 12px;
+        }
+    </style>
 </head>
 
 <body class="bg-white flex h-screen">
@@ -113,15 +133,16 @@
             const data = await response.json();
 
             // Convert AI response from markdown to HTML
-            const formattedResponse = marked.parse(data.response);
+            //const formattedResponse = marked.parse(data.response);
+            const formattedResponse = data.response;
 
             // Append AI's response (formatted properly)
             chatOutput.innerHTML += `
-            <div class='flex justify-start'>
-                <div class='bg-blue-500 text-white p-3 rounded-lg max-w-xl'>
-                    ${formattedResponse} <!-- Markdown formatting applied -->
+                <div class='flex justify-start'>
+                    <div class='bg-blue-500 text-white p-3 rounded-lg max-w-xl leading-relaxed ai-response'>  
+                        ${formattedResponse}  
+                    </div>
                 </div>
-            </div>
             `;
 
             chatOutput.scrollTop = chatOutput.scrollHeight;
