@@ -107,8 +107,9 @@
 
   <script>
     function processLinks(responseText) {
-        // Ensure all links open in a new tab
-        return responseText.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
+        // Find all URLs and replace them with a properly formatted <a> tag
+        return responseText.replace(/<a [^>]*href="([^"]+)"[^>]*>(.*?)<\/a>/g, 
+            `<a href="$1" target="_blank" rel="noopener noreferrer" class="underline text-blue-400 hover:text-blue-600">Click here for more details</a>`);
     }
 
     async function sendMessage() {
@@ -141,7 +142,7 @@
 
             const data = await response.json();
 
-            // Ensure AI response links open in a new tab
+            // Replace links with "Click here for more details" format
             let formattedResponse = processLinks(data.response);
 
             // Append AI's response (formatted properly)
