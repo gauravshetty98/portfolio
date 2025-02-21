@@ -79,7 +79,9 @@
     </div>
   </main>
 
-  <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
+
+<script>
     async function sendMessage() {
         const chatInput = document.getElementById("chat-input");
         const chatOutput = document.getElementById("chat-output");
@@ -89,7 +91,7 @@
         // Append user's message
         chatOutput.innerHTML += `
             <div class='flex justify-end'>
-            <div class='bg-gray-200 p-3 rounded-lg max-w-xl'>${userMessage}</div>
+                <div class='bg-gray-200 p-3 rounded-lg max-w-xl'>${userMessage}</div>
             </div>
         `;
         chatInput.value = "";
@@ -98,9 +100,9 @@
             const response = await fetch("https://llm-connection.onrender.com/ask", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                mode: "cors",  // ✅ Explicitly enabling CORS
-                cache: "no-cache",  // ✅ Prevents caching issues
-                credentials: "omit",  // ✅ Ensures no unnecessary credentials are sent
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "omit",
                 body: JSON.stringify({ query: userMessage })
             });
 
@@ -110,11 +112,14 @@
 
             const data = await response.json();
 
-            // Append AI's response (HTML-formatted)
+            // Convert AI response from markdown to HTML
+            const formattedResponse = marked.parse(data.response);
+
+            // Append AI's response (formatted properly)
             chatOutput.innerHTML += `
             <div class='flex justify-start'>
                 <div class='bg-blue-500 text-white p-3 rounded-lg max-w-xl'>
-                ${data.response}  <!-- Uses innerHTML to preserve formatting -->
+                    ${formattedResponse} <!-- Markdown formatting applied -->
                 </div>
             </div>
             `;
@@ -127,8 +132,7 @@
             `;
         }
     }
-
-  </script>
+</script>
 
   <script>
     lucide.createIcons();
