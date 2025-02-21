@@ -82,22 +82,26 @@
     </div>
   </aside>
   <!-- Main Chat Interface -->
-  <main id="main-content" class="flex-1 flex flex-col justify-between h-screen md:ml-64 p-6 items-center">
+  <main id="main-content" class="flex-1 flex flex-col justify-between h-screen md:ml-64 p-6 items-center w-4/5 mx-auto">
     <!-- Chat Title and Description -->
-    <div class="text-center mb-6">
-      <h1 class="text-3xl font-semibold mb-4">💬 Gaurav's AI Chatbot</h1>
-      <p class="text-l font mb-4">Powered by Google Gemini & FAISS Vector Search</p>
+    <div class="text-left mb-6 w-full max-w-4xl break-words">
+      <h1 class="text-3xl font-semibold mb-4 w-full break-words">🤖 GauravGPT – Your AI Guide to His Work</h1>
+      <p class="text-lg font-normal mb-4 w-full break-words">📌 Explore Gaurav Shetty’s portfolio interactively! Whether you're a recruiter, a fellow developer, or just curious, 
+        this chatbot can provide insights into his projects, skills, and expertise—instantly.</p>
     </div>
-    <div class="w-full max-w-2xl flex flex-col flex-grow">
+    
+    <!-- Chat Container - Increased Width -->
+    <div class="w-full max-w-4xl flex flex-col flex-grow">
       <div id="chat-output" class="flex-grow overflow-y-auto p-4 bg-white rounded-md mb-4 h-96 space-y-4"></div>
     </div>
     
-    <!-- Input Bar at the Bottom, Centered -->
-    <div class="w-full max-w-2xl p-4 bg-white shadow-lg rounded-md flex items-center space-x-2">
+    <!-- Input Bar - Increased Width -->
+    <div class="w-full max-w-4xl p-4 bg-white shadow-lg rounded-md flex items-center space-x-2">
       <input type="text" id="chat-input" class="flex-grow p-2 rounded-md" placeholder="Ask me anything...">
       <button onclick="sendMessage()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Send</button>
     </div>
-  </main>
+</main>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
 
