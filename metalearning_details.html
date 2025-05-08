@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adaptive Loss Functions | Project Details</title>
+  <title>AI Generated Loss Functions | Project Details</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -123,89 +123,71 @@
     <!-- Main Content -->
     <main id="main-content" class="flex-1 p-6 md:ml-64 flex justify-center items-center">
       <div class="content-container">
-        <h1 class="text-3xl font-bold mb-4">🧠 Adaptive Loss Functions with Meta-Learning & Genetic Programming</h1>
+        <h1 class="text-3xl font-bold mb-4">🧠 Automating Loss Function Generation using LLMS and Agentic AI</h1>
         <p class="text-gray-600 mb-6">
-          This research focuses on using meta-learning and genetic programming to automatically create custom loss functions. 
-          Instead of manually designing them, this approach allows loss functions to adapt to different models, improving their performance and flexibility.
+          This project automates a critical aspect of the neural network training pipeline: loss function generation. 
+          By leveraging large language models (LLMs) like CodeLlama, we dynamically generate PyTorch-compatible loss functions based on natural language task descriptions.
         </p>
 
         <img src="./assets/metalearning_overview.jpeg" alt="Meta-Learning Overview" class="w-full h-auto">
 
         <h2 class="text-2xl font-semibold mt-8 mb-2">Objective</h2>
         <p class="text-gray-600 mb-6">
-          The goal of this research is to develop a system that automatically creates optimized loss functions using meta-learning and genetic programming. 
-          By analyzing different models and datasets, the system will generate loss functions tailored to specific tasks, improving adaptability and performance. 
+          The goal of this research is to develop a system that automatically creates loss functions using LLMs and Agentic AI workflow concepts. 
+          By analyzing the problem statement or the machine learning task, the system will generate PyTorch compatible loss functions tailored to the task, improving adaptability and performance.
+          The workflow would not only generate a compatible loss function but also validate it, resolve any potential bugs and only then provide it to the user.
           Unlike manually designed loss functions, which often require extensive trial and error, this approach automates the process, making model training more efficient and reducing human effort. 
-          The end result could be a custom loss function that outperforms traditionally used ones, leading to better model accuracy and generalization.
         </p>
 
         <div class="highlight">
           <strong>Learn More:</strong>
           <ul class="list-disc list-inside text-blue-600 mt-2">
-            <li><a href="https://www.thinkautonomous.ai/blog/meta-learning/" target="_blank">Introduction to Meta-Learning</a></li>
-            <li><a href="https://deap.readthedocs.io/en/master/tutorials/advanced/gp.html" target="_blank">Genetic Programming and DEAP library</a></li>
-            <li><a href="https://www.datacamp.com/tutorial/loss-function-in-machine-learning" target="_blank">Understanding Loss Functions in Machine Learning</a></li>
+            <li><a href="https://medium.com/@myscale/agentic-workflow-for-llms-boost-ai-efficiency-and-automation-f4839ec78271" target="_blank">Agentic Workflow for LLMs</a></li>
+            <li><a href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/" target="_blank">HuggingFace Open LLM Leaderboard</a></li>
+            <li><a href="https://www.prompthub.us/blog/prompt-engineering-for-ai-agents" target="_blank">Prompt Engineering for Agentic AI Systems</a></li>
           </ul>
         </div>
         
 
-        <h2 class="text-2xl font-semibold mt-8 mb-2">What is Meta-Learning?</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Methodology</h2>
         <p class="text-gray-600 mb-4">
-          Meta-learning has been defined in various ways across research, often leading to inconsistencies in terminology. To establish clarity, we present a definition adapted from <strong>Hospedales et al. (2022)</strong>:
-          <br>
-          <br>
-          <strong>    Meta Learning:</strong> The field concerned with the development
-          of self-adapting learning algorithms that learn to solve new tasks from utilizing past experiences of solving similar related tasks. During base learning a
-          set of inner learning algorithms are used to solve a set of tasks, minimizing
-          some inner objective. During meta-learning, an outer algorithm updates the
-          inner learning algorithms such that the models learn to improve on some predetermined outer objective.
+          Leveraged <strong>CodeLlama-7B-Instruct</strong> to generate PyTorch-compatible loss functions based on task descriptions using a chat-style prompt format. 
+          Deployed the model on Rutgers University's <strong>Amarel HPC cluster</strong> for GPU-accelerated generation. 
+          Integrated a validation pipeline that performs <strong>syntax checking, unit testing, and automated retries</strong> for faulty outputs. 
+          Designed an agent-based feedback loop to classify and refine error classification and correction, improving function quality over time. 
+          Used <strong>PlantUML diagrams</strong> to visualize the workflow, and structured the workflow into inner and outer loops.
         </p>
 
         <img src="./assets/metalearning_block.jpeg" alt="Meta-Learning Block" class="w-full h-auto">
 
-        <h2 class="text-2xl font-semibold mt-8 mb-2">What is Genetic Programming?</h2>
-        <p class="text-gray-600 mb-4">
-          Genetic Programming (GP) is an evolutionary algorithm that creates and improves functions by combining and modifying existing ones, much like natural selection. 
-          Instead of manually designing a loss function, GP generates different variations, tests their effectiveness, and evolves the best-performing ones over time.
-          <br>
-          <br>
-          Suppose a model isn't performing well with standard loss functions like Mean Squared Error (MSE) or Cross-Entropy Loss. Genetic programming can automatically mix and modify these, creating a new function.
-          Over multiple iterations, GP selects and evolves the best combinations, leading to a loss function that performs better for the specific model and dataset.
-        </p>
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Tools & Technologies</h2>
+        <ul class="list-disc list-inside text-gray-600 mb-6">
+          <li><strong>PyTorch</strong> – for building and training deep learning models</li>
+          <li><strong>Hugging Face Transformers</strong> – to access and run the CodeLlama-7B-Instruct model</li>
+          <li><strong>CodeLlama-7B-Instruct</strong> – LLM used for loss function generation</li>
+          <li><strong>Amarel HPC Cluster (Rutgers)</strong> – GPU-accelerated environment for running LLMs</li>
+          <li><strong>PlantUML</strong> – to visualize workflow architecture and system design</li>
+          <li><strong>Python (re, unittest, torch)</strong> – for prompt engineering, validation, and testing</li>
+        </ul>
 
         <img src="./assets/geneticprog_block.jpeg" alt="Genetic programming Block" class="w-full h-auto">
 
-        <h2 class="text-2xl font-semibold mt-8 mb-2">Methodology</h2>
-        <p class="text-gray-600 mb-4">
-          Our research is actively exploring different architectures to optimize loss functions dynamically. The system consists of two main components:<br>
-          - <strong>Meta-Learner (Loss Function Optimizer)</strong>: Learns and refines loss functions based on model performance.<br>
-          - <strong>Base Model (CV Model)</strong>: Trained on image classification, detection, or segmentation tasks using the optimized loss functions.<br><br>
-          The workflow follows a two-loop approach:<br>
-          - <strong>Inner Loop</strong>: Trains the base model using the meta-learned loss function.<br>
-          - <strong>Outer Loop</strong>: Adjusts the meta-learner based on task performance feedback.<br><br>
-
-          Additionally, we plan to integrate LLMs (Large Language Models) to enhance the system with insights, explanations, and additional functionalities, making the optimization process more adaptable and interpretable.
+        <h2 class="text-2xl font-semibold mt-8 mb-2">Outcome</h2>
+        <p class="text-gray-600 mb-6">Successfully built an automated pipeline that generates, validates, and refines custom loss functions using LLMs, reducing manual effort and improving model adaptability across diverse tasks.
         </p>
 
-        <!-- <img src="./assets/genetic_programming_process.png" alt="Genetic Programming Process" class="w-full h-auto"> -->
 
-        <!-- <h2 class="text-2xl font-semibold mt-8 mb-2">Tools & Technologies</h2>
-        <ul class="list-disc list-inside text-gray-600 mb-6">
-          <li>PyTorch & TensorFlow for deep learning experiments</li>
-          <li>AutoML frameworks for meta-learning</li>
-          <li>DEAP (Distributed Evolutionary Algorithms in Python) for genetic programming</li>
-          <li>Scikit-learn for performance evaluation</li>
-        </ul> -->
+        <img src="./assets/rubick_example.jpeg" alt="Error correction example" class="w-full h-auto">
 
-        <h2 class="text-2xl font-semibold mt-8 mb-2">Potential Impact</h2>
         <p class="text-gray-600 mb-6">
-          Adaptive loss functions have the potential to outperform traditional, hand-designed functions by dynamically adjusting
-          to different models and datasets. This research paves the way for more efficient and flexible deep learning architectures.
-        </p>
+          Here in the image you can see how it failed to generate a loss function in the first attempt. 
+        Then it figured out where the error occured and was able to rectify the code in the next attempt</p>
 
-        <!-- <div class="flex space-x-4 mt-8">
-          <a href="https://github.com/gauravshetty98/MetaLoss" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View on GitHub</a>
-        </div> -->
+        
+
+        <div class="flex space-x-4 mt-8">
+          <a href="https://github.com/gauravshetty98/Rubick-Automating-Loss-Function-Generation-Using-LLMs" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">View on GitHub</a>
+        </div>
 
         <footer class="bg-white text-center py-8 mt-10 mb-10">
           <p class="text-sm text-gray-600">Bringing data to life, one project at a time.</p>
