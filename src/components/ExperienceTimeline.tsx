@@ -38,7 +38,7 @@ function ProjectAccordion({ project }: { project: ExperienceProject }) {
                 <img
                   src={basePath(project.image)}
                   alt={project.title}
-                  className="w-full max-h-60 object-cover rounded-lg"
+                  className="w-full object-contain rounded-lg"
                 />
               )}
               {[

@@ -26,16 +26,16 @@ export const experiences: Experience[] = [
   {
     id: "evercurrent",
     company: "Evercurrent",
-    role: "Full Stack Software Engineer",
+    role: "AI & Data Science Engineer",
     period: "Jan 2026 - Current",
     startDate: "Jan 2026",
     endDate: "Current",
-    logo: "/assets/evercurrent_logo.jpeg",
+    logo: "/assets/evercurrent_logo_dark.svg",
     description:
       "Evercurrent is a workforce development platform focused on operational efficiency and skills management. As a Full Stack Software Engineer, I contribute across the entire stack — from core backend workflows and third-party integrations to analytics infrastructure and frontend user experience. My work spans building major product features, shipping integrations end-to-end, standing up analytics pipelines, and refining platform UX.",
     projects: [
       {
-        title: "Process-Based Skills Workflow & Knowledge Base Architecture",
+        title: "Building a Skills Architecture for AI Agents to Learn and Execute Custom Workflows",
         objective:
           "Led the development of a process-based skills workflow across multiple phases and built a new mapping system connecting the Knowledge Base directly to Products.",
         businessImpact:
@@ -47,7 +47,7 @@ export const experiences: Experience[] = [
           "Successfully shipped the process-based skills workflow as a core platform feature and established a scalable knowledge-to-product mapping that improved content organization and accessibility.",
       },
       {
-        title: "GitHub Integration & Data Pipeline Optimization",
+        title: "Integrating AI Agents with External Platforms — GitHub, Slack, Teams, Outlook & More",
         objective:
           "Build a GitHub integration from scratch and refactor the application's data synchronization processes for improved reliability.",
         businessImpact:
@@ -59,7 +59,7 @@ export const experiences: Experience[] = [
           "Delivered a production-ready GitHub integration and a unified data sync pipeline that improved system reliability and reduced maintenance overhead.",
       },
       {
-        title: "Amplitude Analytics & Event Tracking Infrastructure",
+        title: "Setting Up Product Usage Analytics and Event Tracking Dashboard to Understand User Behaviour",
         objective:
           "Implement comprehensive backend analytics using Amplitude to enable robust event tracking, user attribution, and data integrity across the platform.",
         businessImpact:
@@ -71,7 +71,7 @@ export const experiences: Experience[] = [
           "Established a reliable analytics infrastructure with accurate event tracking, eliminated duplicate events, and provided marketing and product teams with trustworthy user attribution data.",
       },
       {
-        title: "Conversation Scheduler & Communication Systems",
+        title: "Developing Scheduled Automation Pipelines Enabling Agents to Work Independently",
         objective:
           "Build a conversation scheduling and notification system, along with email infrastructure improvements and real-time chat optimizations.",
         businessImpact:
@@ -83,7 +83,7 @@ export const experiences: Experience[] = [
           "Delivered a fully functional conversation scheduling and notification system, modernized the email infrastructure with flexible scheduling, and improved real-time chat reliability.",
       },
       {
-        title: "Frontend UX & Admin Panel Enhancements",
+        title: "Designing Frontend UIs for Chats and Building Internal Tooling for Platform Administration & Safe Feature Deployment",
         objective:
           "Improve platform navigation, build out admin capabilities, and introduce a feature management system for safe rollouts.",
         businessImpact:
@@ -100,13 +100,50 @@ export const experiences: Experience[] = [
     id: "shiom",
     company: "Shiom.io",
     role: "AI Engineer",
-    period: "Jan 2025 - Current",
+    period: "Jan 2025 - Jan 2026",
     startDate: "Jan 2025",
-    endDate: "Current",
+    endDate: "Jan 2026",
     logo: "/assets/shiom_logo.jpeg",
     description:
       "Shiom is a start-up with a mission of cleaning the internet by providing ways to efficiently clean, transform and dig deep into underlying patterns in the data with their patented algorithms. As an AI Engineer, my work revolves around managing, optimizing and tracking performance metrics of these algorithms. It involves researching traditional and emerging technologies (Agentic AI & LLMs) which could help in solving problems faced by the company and its partners. Currently exploring AI generated data, patterns among them and algorithms to identify such data among many other projects.",
-    projects: [],
+    projects: [
+      {
+        title: "LLM-Based RAG Pipelines for Semantic Search & Knowledge Retrieval",
+        objective:
+          "Design and deploy retrieval-augmented generation (RAG) pipelines to enable fast semantic search and knowledge retrieval across large unstructured datasets.",
+        businessImpact:
+          "Enabled the company and its partners to quickly surface relevant information from vast data sources, significantly reducing manual research time and improving decision-making speed.",
+        methodology:
+          "Built end-to-end RAG pipelines using FAISS and Pinecone vector stores for efficient similarity search. Integrated embedding models for semantic representation and leveraged PyTorch for model fine-tuning and inference optimization.",
+        tools: "Python, PyTorch, FAISS, Pinecone, LangChain, OpenAI API, Embedding Models",
+        results:
+          "Delivered production-ready RAG pipelines that enabled fast, accurate semantic search and knowledge retrieval, forming a core capability for the platform's data intelligence offerings.",
+      },
+      {
+        title: "ML Model Management & Unstructured Data Standardization",
+        objective:
+          "Manage ML models and GPU clusters while extracting and standardizing unstructured data from diverse sources to improve dataset quality and downstream model performance.",
+        businessImpact:
+          "Improved the reliability and consistency of training data across the platform, directly enhancing model accuracy and reducing preprocessing overhead for downstream tasks.",
+        methodology:
+          "Managed ML model lifecycles and GPU cluster allocation for training and inference workloads. Built data extraction pipelines to pull and standardize unstructured data from APIs, SQL databases, CSVs, PDFs, and scraped web text into clean, model-ready formats.",
+        tools: "Python, SQL, PyTorch, GPU Clusters, pandas, BeautifulSoup, PyMuPDF",
+        results:
+          "Established a robust data standardization pipeline that improved dataset quality and consistency, leading to measurable gains in downstream model performance.",
+      },
+      {
+        title: "Automated ML Workflows with Real-Time Monitoring Dashboards",
+        objective:
+          "Automate end-to-end ML workflows by streaming model outputs to cloud storage and displaying them through live dashboards for real-time monitoring and stakeholder visibility.",
+        businessImpact:
+          "Gave stakeholders real-time visibility into model performance and outputs, enabling faster iteration cycles and data-driven decision-making without requiring technical expertise.",
+        methodology:
+          "Designed automated pipelines that streamed ML model outputs directly to AWS S3. Built monitoring dashboards using AWS Amplify to visualize results in real time, providing stakeholders with an accessible interface for tracking model performance and outputs.",
+        tools: "Python, AWS S3, AWS Amplify, Boto3, ML Pipelines",
+        results:
+          "Delivered an automated workflow that eliminated manual reporting, enabled real-time model output monitoring, and improved stakeholder engagement with ML results.",
+      },
+    ],
   },
   {
     id: "pgw",
@@ -167,7 +204,6 @@ export const experiences: Experience[] = [
           "The main challenge was identifying publicly available datasets that addressed key organizational issues while ensuring data quality. I tackled this by prioritizing the organization's challenges, researching datasets relevant to the top problems, and focusing on government-provided or well-documented data to maintain quality standards.",
         results:
           "I delivered a list of potential leads for low-income programs, enabling the team to execute targeted outreach campaigns and inform customers about financial assistance programs they might qualify for.",
-        image: "/assets/pgw_opa.jpeg",
       },
       {
         title: "Energy Burden Forecasting and Analysis",
@@ -199,7 +235,6 @@ export const experiences: Experience[] = [
           "Formatting the survey responses for analysis was a significant hurdle, particularly because much of the data was free text. I addressed this by using Excel and Python to preprocess and organize the responses into a structured format, ensuring they were ready for analysis.",
         results:
           "The analysis identified ineffective communication channels and highlighted preferred outreach methods for different customer groups. These findings enabled the organization to refine awareness campaigns, introduce new outreach strategies, and improve overall program engagement and reach.",
-        image: "/assets/pgw_survey.jpeg",
       },
       {
         title:
@@ -216,7 +251,6 @@ export const experiences: Experience[] = [
           "The biggest challenge was visualizing the recertification process, as its 45-day timeline varied for each customer, making it difficult to showcase monthly drop-offs. Unclean data further complicated the task. I addressed this by performing data aggregation and grouping customers by their stage and remaining days in the process, enabling clear and interpretable visualizations that highlighted monthly drop-offs effectively.",
         results:
           "The dashboard helped in identifying stages that faced the most drop-off thus improving the overall process, it also provided details about upcoming recertifications helping the organization in better planning.",
-        image: "/assets/pgw_recertification.jpeg",
       },
     ],
   },
@@ -280,7 +314,6 @@ export const experiences: Experience[] = [
           "The tools were developed in Python, with Azure DevOps used for version control. Since the primary focus was working with PDF - extracting data and storing it in a structured format, libraries such as OpenCV, tabula-py, and PyMuPDF were utilized.",
         results:
           "The program detected 90% of defective bills, significantly reducing penalty costs for the company. It also enabled efficient extraction of text and image data from invoice PDFs, cutting analysis time for the testing team.",
-        image: "/assets/jio_python.jpeg",
       },
       {
         title:
