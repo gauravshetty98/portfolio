@@ -44,8 +44,9 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+          <div className="relative flex items-center h-20">
+
+            {/* Logo — left */}
             <Link
               href="/"
               className="text-lg font-bold shrink-0 tracking-tighter text-(--foreground) hover:opacity-70 transition-opacity flex items-center gap-2"
@@ -53,41 +54,18 @@ export function Navbar() {
               GS. <span className="font-mono text-xs font-normal text-(--muted-foreground) hidden sm:inline-block">{"// AI"}</span>
             </Link>
 
-            {/* Desktop: mode switcher centered absolutely */}
-            <div className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
+            {/* Mode switcher — absolute center */}
+            <div className="hidden md:block absolute left-1/2 -translate-x-1/2">
               <ModeSwitcher />
             </div>
 
-            {/* Desktop: right side */}
-            <div className="hidden md:flex items-center gap-4">
-              <AnimatePresence>
-                {mode === "classic" && (
-                  <motion.nav
-                    key="nav-links"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex items-center gap-4 mr-4"
-                  >
-                    {navItems.map((item) => (
-                      <a
-                        key={item.href}
-                        href={item.href}
-                        className="text-sm font-medium text-(--muted-foreground)
-                          hover:text-(--foreground) transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </motion.nav>
-                )}
-              </AnimatePresence>
+            {/* Right side: theme toggle */}
+            <div className="hidden md:flex items-center ml-auto">
               <ThemeToggle />
             </div>
 
             {/* Mobile: mode switcher + theme + hamburger */}
-            <div className="flex items-center gap-3 md:hidden">
+            <div className="flex items-center gap-3 md:hidden ml-auto">
               <ModeSwitcher />
               <ThemeToggle />
               {mode === "classic" && (
@@ -104,6 +82,7 @@ export function Navbar() {
                 </button>
               )}
             </div>
+
           </div>
         </div>
       </motion.header>

@@ -2,9 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CornerDownLeft, Loader2, Github, Linkedin, BookOpen } from "lucide-react";
+import { CornerDownLeft, Loader2 } from "lucide-react";
 import { sendChatMessage } from "@/lib/chatApi";
-import { personal } from "@/data/personal";
+import { ScrambleText } from "./ScrambleText";
 
 interface Message {
   role: "user" | "assistant";
@@ -16,12 +16,6 @@ const terminalPrompts = [
   { label: "ls projects/", query: "Tell me about your AI projects" },
   { label: "cat experience.md", query: "What is your work experience?" },
   { label: "grep publications", query: "What publications do you have?" },
-];
-
-const socialLinks = [
-  { icon: Linkedin, href: personal.social.linkedin, label: "LinkedIn" },
-  { icon: Github, href: personal.social.github, label: "GitHub" },
-  { icon: BookOpen, href: personal.social.googleScholar, label: "Google Scholar" },
 ];
 
 export function ChatLanding() {
@@ -36,7 +30,7 @@ export function ChatLanding() {
   }, [messages]);
 
   useEffect(() => {
-    const timer = setTimeout(() => inputRef.current?.focus(), 400);
+    const timer = setTimeout(() => inputRef.current?.focus(), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -71,63 +65,11 @@ export function ChatLanding() {
   const hasMessages = messages.length > 0;
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-(--background) selection:bg-(--foreground) selection:text-(--background)">
-      
-      {/* Background Grid & Vignette */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
-        <div className="absolute inset-0 bg-(--background) mask-[radial-gradient(ellipse_at_center,transparent_20%,black_80%)]"></div>
-      </div>
-
-      {/* Main content */}
-      <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto px-6 pt-32 pb-32 z-10">
-        
-        {/* Hero intro — collapses when chat starts */}
-        <AnimatePresence>
-          {!hasMessages && (
-            <motion.div
-              key="intro"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40, filter: "blur(10px)" }}
-              transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-              className="flex flex-col items-start gap-6 mt-12 mb-16"
-            >
-              <div className="font-mono text-xs text-(--muted-foreground) tracking-widest uppercase border border-(--border) px-3 py-1 rounded-full bg-(--muted)/30">
-                System_Ready // v2.0
-              </div>
-
-              <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter text-(--foreground) leading-[1.1]">
-                Gaurav Shetty. <br />
-                <span className="text-(--muted-foreground) font-medium">AI Engineer.</span>
-              </h1>
-              
-              <p className="text-lg text-(--muted-foreground) max-w-xl leading-relaxed font-light">
-                I design and build intelligent systems, predictive models, and scalable data architectures. You can explore my work by chatting with my portfolio below.
-              </p>
-
-              {/* Social links */}
-              <div className="flex items-center gap-5 mt-4">
-                {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="text-(--muted-foreground) hover:text-(--foreground) transition-colors"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Chat Canvas (No bubbles, editorial style) */}
-        {hasMessages && (
-          <div className="flex-1 overflow-y-auto space-y-16 mb-8 pr-2 pt-4">
+    <div className="relative">
+      {/* Chat messages canvas — only shown after first message */}
+      {hasMessages && (
+        <div className="max-w-3xl mx-auto px-6 pb-48">
+          <div className="space-y-16 pt-4">
             {messages.map((msg, i) => (
               <motion.div
                 key={i}
@@ -149,10 +91,11 @@ export function ChatLanding() {
                   <div className="mt-6">
                     <div
                       className="prose prose-lg dark:prose-invert max-w-none text-(--muted-foreground) leading-relaxed font-light
-                        [&_p]:mb-6 [&_p:last-child]:mb-0 
+                        [&_p]:mb-6 [&_p:last-child]:mb-0
                         [&_ul]:ml-4 [&_ul]:list-disc [&_li]:mb-2
                         [&_strong]:text-(--foreground) [&_strong]:font-medium
-                        [&_a]:text-(--foreground) [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-(--border) hover:[&_a]:decoration-(--foreground) [&_a]:transition-colors"
+                        [&_a]:text-(--foreground) [&_a]:underline [&_a]:underline-offset-4
+                        [&_a]:decoration-(--border) hover:[&_a]:decoration-(--foreground) [&_a]:transition-colors"
                       dangerouslySetInnerHTML={{ __html: msg.content }}
                     />
                   </div>
@@ -164,7 +107,7 @@ export function ChatLanding() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex items-center gap-3 text-sm font-mono text-(--muted-foreground) mt-8"
+                className="flex items-center gap-3 text-sm font-mono text-(--muted-foreground)"
               >
                 <Loader2 className="w-4 h-4 animate-spin" />
                 <span className="animate-pulse">[ GENERATING_RESPONSE... ]</span>
@@ -172,61 +115,74 @@ export function ChatLanding() {
             )}
             <div ref={chatEndRef} />
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Fixed Bottom Input Area */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-(--background) via-(--background)/90 to-transparent pb-8 pt-12">
-        <div className="max-w-3xl mx-auto px-6">
+      {/* Fixed bottom input bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-(--background) via-(--background)/90 to-transparent pb-8 pt-12 pointer-events-none">
+        <div className="max-w-3xl mx-auto px-6 pointer-events-auto">
+
+          {/* Quick prompt chips — only before first message */}
           <AnimatePresence>
             {!hasMessages && (
               <motion.div
+                key="prompts"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: 10, transition: { duration: 0.2 } }}
                 className="flex flex-wrap gap-2 mb-6"
               >
-                {terminalPrompts.map((prompt) => (
-                  <button
+                {terminalPrompts.map((prompt, i) => (
+                  <motion.button
                     key={prompt.label}
                     onClick={() => handleSend(prompt.query)}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 + i * 0.07, duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
                     className="text-xs font-mono px-3 py-1.5 rounded-md
                       border border-(--border)/50 bg-(--muted)/30
                       hover:border-(--foreground)/30 hover:text-(--foreground)
                       text-(--muted-foreground) transition-all duration-300"
                   >
-                    {prompt.label}
-                  </button>
+                    <ScrambleText text={prompt.label} animateOnMount delay={100 + i * 80} speed={25} />
+                  </motion.button>
                 ))}
               </motion.div>
             )}
           </AnimatePresence>
 
+          {/* Input line */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
             }}
-            className="relative flex items-center group"
+            className="relative flex items-center"
           >
-            <div className="absolute left-4 text-(--muted-foreground) font-mono text-lg">
-              {">"}
+            <div className="absolute left-0 text-(--muted-foreground) font-mono text-lg select-none">
+              <ScrambleText text=">" animateOnMount delay={300} speed={40} />
             </div>
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask anything..."
+              placeholder=""
               disabled={loading}
-              className="w-full pl-10 pr-16 py-4 text-lg bg-transparent border-b-2 border-(--border)
+              className="w-full pl-6 pr-14 py-4 text-lg bg-transparent border-b-2 border-(--border)
                 focus:border-(--foreground) focus:outline-none rounded-none
-                transition-all placeholder:text-(--muted-foreground)/50 text-(--foreground)"
+                transition-colors text-(--foreground)"
             />
+            {/* Animated placeholder — only when input is empty */}
+            {!input && (
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg text-(--muted-foreground)/40 pointer-events-none select-none">
+                <ScrambleText text="Ask anything..." animateOnMount delay={400} speed={20} />
+              </span>
+            )}
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="absolute right-2 p-2 text-(--muted-foreground) hover:text-(--foreground)
+              className="absolute right-0 p-2 text-(--muted-foreground) hover:text-(--foreground)
                 disabled:opacity-30 transition-colors duration-200"
               aria-label="Send message"
             >
