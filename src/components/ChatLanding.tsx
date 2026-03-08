@@ -75,8 +75,8 @@ export function ChatLanding() {
       
       {/* Background Grid & Vignette */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]"></div>
-        <div className="absolute inset-0 bg-(--background) [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_80%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
+        <div className="absolute inset-0 bg-(--background) mask-[radial-gradient(ellipse_at_center,transparent_20%,black_80%)]"></div>
       </div>
 
       {/* Main content */}

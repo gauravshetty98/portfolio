@@ -7,10 +7,10 @@ import { SectionHeading } from "./SectionHeading";
 
 export function Publications() {
   return (
-    <section id="publications" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="publications" className="py-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <SectionHeading
-          title="Publications"
+          title="Publications."
           subtitle="Curious about my research? Explore my published papers and see how data turns into discovery."
         />
 
@@ -25,29 +25,22 @@ export function Publications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)]
-                hover:border-[var(--accent)]/30 transition-all duration-300
-                hover:shadow-xl hover:shadow-blue-500/5"
+              className="group p-8 rounded-3xl bg-(--muted)/20 border border-(--border)/50
+                hover:border-(--border) transition-all duration-300"
             >
-              <div className="flex items-start justify-between mb-3">
-                <span
-                  className="px-3 py-1 text-xs font-medium rounded-full
-                    bg-[var(--accent)]/10 text-[var(--accent)]"
-                >
+              <div className="flex items-start justify-between mb-6">
+                <span className="px-3 py-1.5 text-xs font-bold tracking-widest uppercase rounded-full bg-(--foreground) text-(--background)">
                   {pub.publisher}
                 </span>
-                <ExternalLink
-                  className="w-4 h-4 text-[var(--muted-foreground)]
-                    group-hover:text-[var(--accent)] transition-colors"
-                />
+                <ExternalLink className="w-5 h-5 text-(--muted-foreground) group-hover:text-(--foreground) transition-colors" />
               </div>
-              <h3 className="font-semibold text-lg mb-2 group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="font-bold text-xl mb-3 group-hover:underline decoration-2 underline-offset-4 text-(--foreground) leading-snug">
                 {pub.title}
               </h3>
-              <p className="text-xs text-[var(--muted-foreground)] mb-3">
+              <p className="text-sm font-mono text-(--muted-foreground)/70 mb-4">
                 {pub.date}
               </p>
-              <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+              <p className="text-base text-(--muted-foreground) leading-relaxed font-light">
                 {pub.description}
               </p>
             </motion.a>

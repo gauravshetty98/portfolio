@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, MessageSquare, Github, Linkedin, BookOpen } from "lucide-react";
+import { ArrowDown, Github, Linkedin, BookOpen } from "lucide-react";
 import { personal } from "@/data/personal";
-import Link from "next/link";
 import { basePath } from "@/lib/utils";
 
 export function Hero() {
@@ -12,144 +11,84 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-cyan-500/10 to-purple-600/20
-            dark:from-blue-600/10 dark:via-cyan-500/5 dark:to-purple-600/10
-            animate-gradient-x"
-        />
-        <div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full
-            blur-3xl animate-float"
-        />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full
-            blur-3xl animate-float"
-          style={{ animationDelay: "3s" }}
-        />
+      {/* Background Grid & Vignette */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]"></div>
+        <div className="absolute inset-0 bg-(--background) mask-[radial-gradient(ellipse_at_center,transparent_20%,black_80%)]"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="flex flex-col items-center text-center gap-8">
-          {/* Profile image */}
+      <div className="max-w-6xl mx-auto px-6 pt-20 z-10 w-full">
+        <div className="flex flex-col items-start gap-6 mt-12 mb-16">
+          
+          {/* Profile image & Greeting */}
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            className="flex items-center gap-4 mb-2"
           >
-            <div
-              className="w-28 h-28 rounded-full overflow-hidden ring-4
-                ring-[var(--accent)]/30 ring-offset-4 ring-offset-[var(--background)]"
-            >
+            <div className="w-16 h-16 rounded-full overflow-hidden ring-1 ring-(--border)">
               <img
                 src={basePath(personal.profileImage)}
                 alt={personal.name}
                 className="w-full h-full object-cover"
               />
             </div>
-            <div
-              className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full
-                bg-green-500 border-4 border-[var(--background)]"
-            />
-          </motion.div>
-
-          {/* Name and title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-              Hi, I&apos;m{" "}
-              <span
-                className="bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)]
-                  bg-clip-text text-transparent"
-              >
-                {personal.name}
-              </span>
+            <h1 className="text-2xl sm:text-3xl font-medium text-(--muted-foreground) tracking-tight">
+              Hey, I&apos;m Gaurav 👋
             </h1>
           </motion.div>
 
-          <motion.p
+          {/* Title */}
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-xl sm:text-2xl text-[var(--muted-foreground)] font-medium"
+            transition={{ delay: 0.1, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            className="text-6xl sm:text-8xl font-extrabold tracking-tighter text-(--foreground) leading-none"
           >
-            {personal.title}
-          </motion.p>
+            AI Engineer.
+          </motion.h2>
 
+          {/* Bio */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="max-w-2xl text-[var(--muted-foreground)] text-lg leading-relaxed"
+            transition={{ delay: 0.2, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            className="text-lg sm:text-xl text-(--muted-foreground) max-w-2xl leading-relaxed font-light mt-2"
           >
             {personal.bio}
           </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="flex flex-col sm:flex-row items-center gap-4"
-          >
-            <a
-              href="#projects"
-              className="px-8 py-3 rounded-xl font-medium
-                bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)]
-                text-white hover:opacity-90 transition-opacity shadow-lg
-                shadow-blue-500/25"
-            >
-              View My Work
-            </a>
-            <Link
-              href="/chatbot"
-              className="flex items-center gap-2 px-8 py-3 rounded-xl font-medium
-                border border-[var(--border)] hover:bg-[var(--muted)]
-                transition-colors"
-            >
-              <MessageSquare className="w-4 h-4" />
-              Chat with GauravGPT
-            </Link>
-          </motion.div>
 
           {/* Social links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
             className="flex items-center gap-4 mt-4"
           >
             <a
               href={personal.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-[var(--muted-foreground)]
-                hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+              className="text-(--muted-foreground) hover:text-(--foreground) transition-colors"
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-6 h-6" />
             </a>
             <a
               href={personal.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-[var(--muted-foreground)]
-                hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+              className="text-(--muted-foreground) hover:text-(--foreground) transition-colors"
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-6 h-6" />
             </a>
             <a
               href={personal.social.googleScholar}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg text-[var(--muted-foreground)]
-                hover:text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+              className="text-(--muted-foreground) hover:text-(--foreground) transition-colors"
             >
-              <BookOpen className="w-5 h-5" />
+              <BookOpen className="w-6 h-6" />
             </a>
           </motion.div>
 
@@ -157,16 +96,16 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.5 }}
-            className="mt-8"
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="mt-16"
           >
-            <a href="#about" className="flex flex-col items-center gap-2 text-[var(--muted-foreground)]">
-              <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <a href="#about" className="flex flex-col items-start gap-3 text-(--muted-foreground) hover:text-(--foreground) transition-colors">
+              <span className="text-xs font-medium tracking-widest uppercase">Scroll to explore</span>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <ArrowDown className="w-4 h-4" />
+                <ArrowDown className="w-5 h-5" />
               </motion.div>
             </a>
           </motion.div>

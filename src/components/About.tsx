@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 import { personal } from "@/data/personal";
 import { SectionHeading } from "./SectionHeading";
-import { basePath } from "@/lib/utils";
 
 export function About() {
   return (
-    <section id="about" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading title="About Me" />
+    <section id="about" className="py-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <SectionHeading title="About Me." />
 
         {/* Stats */}
         <motion.div
@@ -18,18 +17,14 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-3 gap-4 sm:gap-8 mb-16 max-w-lg"
+          className="grid grid-cols-3 gap-6 sm:gap-12 mb-20 max-w-2xl"
         >
           {personal.stats.map((stat, i) => (
             <div key={i} className="text-center sm:text-left">
-              <div
-                className="text-3xl sm:text-4xl font-bold bg-gradient-to-r
-                  from-[var(--gradient-start)] to-[var(--gradient-end)]
-                  bg-clip-text text-transparent"
-              >
+              <div className="text-4xl sm:text-5xl font-extrabold tracking-tighter text-(--foreground)">
                 {stat.value}
               </div>
-              <div className="text-sm text-[var(--muted-foreground)] mt-1">
+              <div className="text-sm font-medium text-(--muted-foreground) mt-2 uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>
@@ -42,27 +37,22 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex items-start gap-4 p-6 rounded-2xl bg-[var(--card)]
-            border border-[var(--border)]"
+          className="flex flex-col sm:flex-row items-start gap-6 p-8 rounded-3xl bg-(--muted)/20 border border-(--border)/50"
         >
-          <div
-            className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br
-              from-[var(--gradient-start)] to-[var(--gradient-end)]
-              flex items-center justify-center"
-          >
-            <GraduationCap className="w-7 h-7 text-white" />
+          <div className="shrink-0 w-16 h-16 rounded-2xl bg-(--foreground) flex items-center justify-center">
+            <GraduationCap className="w-8 h-8 text-(--background)" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">
+            <h3 className="text-2xl font-bold tracking-tight text-(--foreground)">
               {personal.education.university}
             </h3>
-            <p className="text-[var(--accent)] font-medium">
+            <p className="text-lg font-medium text-(--muted-foreground) mt-1">
               {personal.education.degree}
             </p>
-            <p className="text-sm text-[var(--muted-foreground)] mt-1">
+            <p className="text-sm font-mono text-(--muted-foreground)/70 mt-2">
               {personal.education.graduationDate}
             </p>
-            <p className="text-sm text-[var(--muted-foreground)] mt-2 leading-relaxed">
+            <p className="text-base text-(--muted-foreground) mt-4 leading-relaxed font-light max-w-2xl">
               {personal.education.description}
             </p>
           </div>

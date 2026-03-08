@@ -17,10 +17,10 @@ export function ProjectGrid() {
       : projects.filter((p) => p.category.includes(activeCategory));
 
   return (
-    <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <SectionHeading
-          title="Projects"
+          title="Projects."
           subtitle="Building intelligent systems is more than just a profession — it's my passion."
         />
 
@@ -30,16 +30,16 @@ export function ProjectGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="flex flex-wrap gap-2 mb-10"
+          className="flex flex-wrap gap-2 mb-12"
         >
           {projectCategories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+              className={`px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
                 activeCategory === cat.id
-                  ? "bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)] text-white shadow-lg shadow-blue-500/25"
-                  : "bg-[var(--muted)] text-[var(--muted-foreground)] hover:bg-[var(--border)]"
+                  ? "bg-(--foreground) text-(--background)"
+                  : "bg-(--muted)/50 text-(--muted-foreground) hover:bg-(--border)/50 hover:text-(--foreground)"
               }`}
             >
               {cat.label}
@@ -48,7 +48,7 @@ export function ProjectGrid() {
         </motion.div>
 
         {/* Project cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((project, i) => (
             <motion.div
               key={project.slug}
@@ -61,46 +61,43 @@ export function ProjectGrid() {
             >
               <Link href={`/projects/${project.slug}`}>
                 <div
-                  className="h-full rounded-2xl overflow-hidden bg-[var(--card)]
-                    border border-[var(--border)] hover:border-[var(--accent)]/30
-                    transition-all duration-300 hover:shadow-xl
-                    hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10"
+                  className="h-full rounded-3xl overflow-hidden bg-(--muted)/20
+                    border border-(--border)/50 hover:border-(--border)
+                    transition-all duration-300"
                 >
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden aspect-video">
                     <img
                       src={basePath(project.thumbnail)}
                       alt={project.shortTitle}
-                      className="w-full h-48 object-cover transition-transform
+                      className="w-full h-full object-cover transition-all
                         duration-500 group-hover:scale-105"
                     />
                     <div
-                      className="absolute inset-0 bg-gradient-to-t from-black/60
-                        to-transparent opacity-0 group-hover:opacity-100
-                        transition-opacity duration-300 flex items-end
-                        justify-end p-4"
+                      className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100
+                        transition-opacity duration-300 flex items-end justify-end p-6"
                     >
                       <div
-                        className="w-10 h-10 rounded-full bg-white/20 backdrop-blur
-                          flex items-center justify-center"
+                        className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm
+                          flex items-center justify-center text-black"
                       >
-                        <ArrowUpRight className="w-5 h-5 text-white" />
+                        <ArrowUpRight className="w-5 h-5" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-5">
-                    <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-bold text-xl sm:text-2xl mb-3 tracking-tight text-(--foreground) group-hover:underline decoration-2 underline-offset-4">
                       {project.shortTitle}
                     </h3>
-                    <p className="text-sm text-[var(--muted-foreground)] mb-4 line-clamp-2">
+                    <p className="text-base text-(--muted-foreground) mb-6 line-clamp-2 font-light leading-relaxed">
                       {project.shortDescription}
                     </p>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {project.keywords.slice(0, 4).map((kw) => (
                         <span
                           key={kw}
-                          className="px-2.5 py-1 text-xs font-medium rounded-full
-                            bg-[var(--muted)] text-[var(--muted-foreground)]"
+                          className="px-3 py-1.5 text-xs font-medium rounded-full
+                            bg-(--muted) text-(--muted-foreground)"
                         >
                           {kw}
                         </span>

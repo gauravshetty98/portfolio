@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, BookOpen, MessageSquare } from "lucide-react";
 import { personal } from "@/data/personal";
 import { SectionHeading } from "./SectionHeading";
-import Link from "next/link";
+import { useMode } from "./ModeProvider";
 
 const contactLinks = [
   {
@@ -34,11 +34,13 @@ const contactLinks = [
 ];
 
 export function Contact() {
+  const { setMode } = useMode();
+
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <SectionHeading
-          title="Let's Connect"
+          title="Let's Connect."
           subtitle="I hope you enjoyed exploring my work! If you'd like to discuss any of these projects, collaborate, or just have a chat, feel free to reach out."
         />
 
@@ -53,20 +55,16 @@ export function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--card)]
-                border border-[var(--border)] hover:border-[var(--accent)]/30
+              className="flex items-center gap-4 p-5 rounded-3xl bg-(--muted)/20
+                border border-(--border)/50 hover:border-(--border)
                 transition-all duration-300 group"
             >
-              <div
-                className="w-10 h-10 rounded-xl bg-[var(--accent)]/10
-                  flex items-center justify-center group-hover:bg-[var(--accent)]/20
-                  transition-colors"
-              >
-                <link.icon className="w-5 h-5 text-[var(--accent)]" />
+              <div className="w-12 h-12 rounded-2xl bg-(--muted) flex items-center justify-center group-hover:bg-(--foreground) group-hover:text-(--background) transition-colors text-(--foreground)">
+                <link.icon className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-sm font-medium">{link.label}</p>
-                <p className="text-xs text-[var(--muted-foreground)]">
+                <p className="text-sm font-bold tracking-wide text-(--foreground)">{link.label}</p>
+                <p className="text-sm text-(--muted-foreground) font-light">
                   {link.display}
                 </p>
               </div>
@@ -79,29 +77,28 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.5 }}
-          className="mt-10 p-6 rounded-2xl bg-gradient-to-r
-            from-[var(--gradient-start)]/10 to-[var(--gradient-end)]/10
-            border border-[var(--accent)]/20 max-w-2xl"
+          className="mt-12 p-8 rounded-3xl bg-(--foreground) text-(--background) max-w-2xl"
         >
-          <div className="flex items-start gap-4">
-            <MessageSquare className="w-8 h-8 text-[var(--accent)] flex-shrink-0 mt-1" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div className="w-14 h-14 rounded-2xl bg-(--background)/10 flex items-center justify-center shrink-0">
+              <MessageSquare className="w-6 h-6" />
+            </div>
             <div>
-              <h3 className="font-semibold text-lg mb-1">
+              <h3 className="font-bold text-xl mb-2 tracking-tight">
                 Prefer chatting with AI?
               </h3>
-              <p className="text-sm text-[var(--muted-foreground)] mb-3">
+              <p className="text-sm text-(--background)/80 mb-4 font-light leading-relaxed">
                 Try GauravGPT — my AI-powered portfolio assistant that can answer
                 your questions about my projects, skills, and experience instantly.
               </p>
-              <Link
-                href="/chatbot"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium
-                  bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)]
-                  text-white hover:opacity-90 transition-opacity"
+              <button
+                onClick={() => setMode("chat")}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold
+                  bg-(--background) text-(--foreground) hover:opacity-90 transition-opacity"
               >
                 <MessageSquare className="w-4 h-4" />
                 Chat with GauravGPT
-              </Link>
+              </button>
             </div>
           </div>
         </motion.div>
