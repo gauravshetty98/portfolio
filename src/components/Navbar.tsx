@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { ModeSwitcher } from "./ModeSwitcher";
+import { useMode } from "./ModeProvider";
 import Link from "next/link";
-import { basePath } from "@/lib/utils";
 
 const navItems = [
-  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Publications", href: "#publications" },
@@ -18,6 +19,7 @@ const navItems = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { mode } = useMode();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -25,100 +27,110 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [mode]);
+
   return (
     <>
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass shadow-lg shadow-black/5 dark:shadow-black/20"
-            : "bg-transparent"
+            ? "bg-(--background)/80 backdrop-blur-xl border-b border-(--border)/50 shadow-sm"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
             <Link
               href="/"
-              className="text-lg font-bold bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)] bg-clip-text text-transparent"
+              className="text-xl font-bold shrink-0 tracking-tighter text-(--foreground) hover:opacity-70 transition-opacity"
             >
-              GS
+              GS.
             </Link>
 
-            <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-[var(--muted-foreground)]
-                    hover:text-[var(--foreground)] transition-colors rounded-lg
-                    hover:bg-[var(--muted)]"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <Link
-                href="/chatbot"
-                className="ml-2 px-4 py-2 text-sm font-medium rounded-lg
-                  bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)]
-                  text-white hover:opacity-90 transition-opacity"
-              >
-                GauravGPT
-              </Link>
-              <div className="ml-2">
-                <ThemeToggle />
-              </div>
-            </nav>
+            {/* Desktop: mode switcher centered absolutely */}
+            <div className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
+              <ModeSwitcher />
+            </div>
 
-            <div className="flex items-center gap-2 md:hidden">
-              <ThemeToggle />
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="p-2 rounded-lg hover:bg-[var(--muted)] transition-colors"
-                aria-label="Toggle menu"
-              >
-                {mobileOpen ? (
-                  <X className="w-5 h-5" />
-                ) : (
-                  <Menu className="w-5 h-5" />
+            {/* Desktop: right side */}
+            <div className="hidden md:flex items-center gap-2">
+              <AnimatePresence>
+                {mode === "classic" && (
+                  <motion.nav
+                    key="nav-links"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-1 mr-4"
+                  >
+                    {navItems.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className="px-4 py-2 text-sm font-medium text-(--muted-foreground)
+                          hover:text-(--foreground) transition-colors rounded-full
+                          hover:bg-(--muted)/50"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </motion.nav>
                 )}
-              </button>
+              </AnimatePresence>
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile: mode switcher + theme + hamburger */}
+            <div className="flex items-center gap-3 md:hidden">
+              <ModeSwitcher />
+              <ThemeToggle />
+              {mode === "classic" && (
+                <button
+                  onClick={() => setMobileOpen(!mobileOpen)}
+                  className="p-2 rounded-full hover:bg-(--muted)/50 transition-colors text-(--foreground)"
+                  aria-label="Toggle menu"
+                >
+                  {mobileOpen ? (
+                    <X className="w-5 h-5" />
+                  ) : (
+                    <Menu className="w-5 h-5" />
+                  )}
+                </button>
+              )}
             </div>
           </div>
         </div>
       </motion.header>
 
+      {/* Mobile nav dropdown — only in classic mode */}
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileOpen && mode === "classic" && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 glass md:hidden"
+            initial={{ opacity: 0, y: -10, filter: "blur(5px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="fixed inset-x-0 top-20 z-40 bg-(--background)/95 backdrop-blur-xl border-b border-(--border)/50 md:hidden shadow-lg"
           >
-            <nav className="flex flex-col p-4 gap-1">
+            <nav className="flex flex-col p-6 gap-2">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium rounded-lg
-                    hover:bg-[var(--muted)] transition-colors"
+                  className="px-4 py-3 text-base font-medium rounded-xl text-(--muted-foreground)
+                    hover:text-(--foreground) hover:bg-(--muted)/50 transition-colors"
                 >
                   {item.label}
                 </a>
               ))}
-              <Link
-                href="/chatbot"
-                onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 text-sm font-medium rounded-lg text-center
-                  bg-gradient-to-r from-[var(--gradient-start)] to-[var(--gradient-end)]
-                  text-white"
-              >
-                GauravGPT
-              </Link>
             </nav>
           </motion.div>
         )}
