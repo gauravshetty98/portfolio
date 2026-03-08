@@ -2,21 +2,20 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, Loader2, Github, Linkedin, BookOpen } from "lucide-react";
+import { CornerDownLeft, Loader2, Github, Linkedin, BookOpen } from "lucide-react";
 import { sendChatMessage } from "@/lib/chatApi";
 import { personal } from "@/data/personal";
-import { basePath } from "@/lib/utils";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-const suggestedPrompts = [
-  "What are Gaurav's key skills?",
-  "Tell me about his AI projects",
-  "What's his work experience?",
-  "What publications does he have?",
+const terminalPrompts = [
+  { label: "./whoami", query: "Who are you and what are your key skills?" },
+  { label: "ls projects/", query: "Tell me about your AI projects" },
+  { label: "cat experience.md", query: "What is your work experience?" },
+  { label: "grep publications", query: "What publications do you have?" },
 ];
 
 const socialLinks = [
@@ -61,7 +60,7 @@ export function ChatLanding() {
         {
           role: "assistant",
           content:
-            "Sorry, I'm having trouble connecting right now. Please try again later.",
+            "System error: Unable to connect to the LLM backend. Please try again later.",
         },
       ]);
     } finally {
@@ -73,11 +72,15 @@ export function ChatLanding() {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-(--background) selection:bg-(--foreground) selection:text-(--background)">
-      {/* Subtle noise texture overlay (optional, adds to minimal aesthetic) */}
-      <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+      
+      {/* Background Grid & Vignette */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]"></div>
+        <div className="absolute inset-0 bg-(--background) [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_80%)]"></div>
+      </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto px-6 pt-28 pb-8 z-10">
+      <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto px-6 pt-32 pb-32 z-10">
         
         {/* Hero intro — collapses when chat starts */}
         <AnimatePresence>
@@ -86,33 +89,25 @@ export function ChatLanding() {
               key="intro"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20, height: 0, filter: "blur(10px)" }}
-              transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+              exit={{ opacity: 0, y: -40, filter: "blur(10px)" }}
+              transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
               className="flex flex-col items-start gap-6 mt-12 mb-16"
             >
-              <div className="flex items-center gap-4 mb-2">
-                <div className="w-14 h-14 rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 ring-1 ring-(--border)">
-                  <img
-                    src={basePath(personal.profileImage)}
-                    alt={personal.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h1 className="text-2xl sm:text-3xl font-medium text-(--muted-foreground) tracking-tight">
-                  Hey, I&apos;m Gaurav 👋
-                </h1>
+              <div className="font-mono text-xs text-(--muted-foreground) tracking-widest uppercase border border-(--border) px-3 py-1 rounded-full bg-(--muted)/30">
+                System_Ready // v2.0
               </div>
 
-              <h2 className="text-6xl sm:text-8xl font-extrabold tracking-tighter text-(--foreground) leading-none">
-                AI Engineer.
-              </h2>
+              <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter text-(--foreground) leading-[1.1]">
+                Gaurav Shetty. <br />
+                <span className="text-(--muted-foreground) font-medium">AI Engineer.</span>
+              </h1>
               
-              <p className="text-lg sm:text-xl text-(--muted-foreground) max-w-xl leading-relaxed font-light">
-                I build intelligent systems and predictive models. Ask me anything about my work, experience, or skills.
+              <p className="text-lg text-(--muted-foreground) max-w-xl leading-relaxed font-light">
+                I design and build intelligent systems, predictive models, and scalable data architectures. You can explore my work by chatting with my portfolio below.
               </p>
 
               {/* Social links */}
-              <div className="flex items-center gap-4 mt-2">
+              <div className="flex items-center gap-5 mt-4">
                 {socialLinks.map(({ icon: Icon, href, label }) => (
                   <a
                     key={label}
@@ -130,36 +125,38 @@ export function ChatLanding() {
           )}
         </AnimatePresence>
 
-        {/* Chat messages */}
+        {/* Chat Canvas (No bubbles, editorial style) */}
         {hasMessages && (
-          <div className="flex-1 overflow-y-auto space-y-8 mb-8 pr-2 pt-4">
+          <div className="flex-1 overflow-y-auto space-y-16 mb-8 pr-2 pt-4">
             {messages.map((msg, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
+                initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
+                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                className="flex flex-col"
               >
-                <div
-                  className={`max-w-[85%] px-6 py-4 rounded-3xl text-base leading-relaxed ${
-                    msg.role === "user"
-                      ? "bg-(--foreground) text-(--background) rounded-tr-sm"
-                      : "bg-(--muted)/50 text-(--foreground) rounded-tl-sm border border-(--border)/50"
-                  }`}
-                >
-                  {msg.role === "assistant" ? (
+                {msg.role === "user" ? (
+                  <div className="group relative">
+                    <div className="absolute -left-6 top-1.5 text-(--border) opacity-0 group-hover:opacity-100 transition-opacity">
+                      <CornerDownLeft className="w-4 h-4" />
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-semibold text-(--foreground) tracking-tight leading-snug">
+                      {msg.content}
+                    </h2>
+                  </div>
+                ) : (
+                  <div className="mt-6">
                     <div
-                      className="prose prose-base dark:prose-invert max-w-none
-                        [&_p]:mb-3 [&_p:last-child]:mb-0 
-                        [&_ul]:ml-4 [&_ul]:list-disc [&_li]:mb-1
+                      className="prose prose-lg dark:prose-invert max-w-none text-(--muted-foreground) leading-relaxed font-light
+                        [&_p]:mb-6 [&_p:last-child]:mb-0 
+                        [&_ul]:ml-4 [&_ul]:list-disc [&_li]:mb-2
+                        [&_strong]:text-(--foreground) [&_strong]:font-medium
                         [&_a]:text-(--foreground) [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-(--border) hover:[&_a]:decoration-(--foreground) [&_a]:transition-colors"
                       dangerouslySetInnerHTML={{ __html: msg.content }}
                     />
-                  ) : (
-                    msg.content
-                  )}
-                </div>
+                  </div>
+                )}
               </motion.div>
             ))}
 
@@ -167,29 +164,20 @@ export function ChatLanding() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex justify-start"
+                className="flex items-center gap-3 text-sm font-mono text-(--muted-foreground) mt-8"
               >
-                <div className="bg-(--muted)/50 border border-(--border)/50 px-6 py-5 rounded-3xl rounded-tl-sm">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-(--muted-foreground)/50 animate-bounce" />
-                    <div
-                      className="w-2 h-2 rounded-full bg-(--muted-foreground)/50 animate-bounce"
-                      style={{ animationDelay: "0.15s" }}
-                    />
-                    <div
-                      className="w-2 h-2 rounded-full bg-(--muted-foreground)/50 animate-bounce"
-                      style={{ animationDelay: "0.3s" }}
-                    />
-                  </div>
-                </div>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span className="animate-pulse">[ GENERATING_RESPONSE... ]</span>
               </motion.div>
             )}
             <div ref={chatEndRef} />
           </div>
         )}
+      </div>
 
-        {/* Input area */}
-        <div className="mt-auto relative">
+      {/* Fixed Bottom Input Area */}
+      <div className="fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-(--background) via-(--background)/90 to-transparent pb-8 pt-12">
+        <div className="max-w-3xl mx-auto px-6">
           <AnimatePresence>
             {!hasMessages && (
               <motion.div
@@ -198,16 +186,16 @@ export function ChatLanding() {
                 exit={{ opacity: 0, y: -10 }}
                 className="flex flex-wrap gap-2 mb-6"
               >
-                {suggestedPrompts.map((prompt) => (
+                {terminalPrompts.map((prompt) => (
                   <button
-                    key={prompt}
-                    onClick={() => handleSend(prompt)}
-                    className="text-sm px-4 py-2 rounded-full
-                      border border-(--border) bg-(--background)
-                      hover:border-(--foreground) hover:bg-(--foreground) hover:text-(--background)
+                    key={prompt.label}
+                    onClick={() => handleSend(prompt.query)}
+                    className="text-xs font-mono px-3 py-1.5 rounded-md
+                      border border-(--border)/50 bg-(--muted)/30
+                      hover:border-(--foreground)/30 hover:text-(--foreground)
                       text-(--muted-foreground) transition-all duration-300"
                   >
-                    {prompt}
+                    {prompt.label}
                   </button>
                 ))}
               </motion.div>
@@ -219,8 +207,11 @@ export function ChatLanding() {
               e.preventDefault();
               handleSend();
             }}
-            className="relative flex items-center shadow-sm"
+            className="relative flex items-center group"
           >
+            <div className="absolute left-4 text-(--muted-foreground) font-mono text-lg">
+              {">"}
+            </div>
             <input
               ref={inputRef}
               type="text"
@@ -228,24 +219,21 @@ export function ChatLanding() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask anything..."
               disabled={loading}
-              className="w-full px-6 py-4 pr-16 text-base rounded-full
-                bg-(--muted)/30 border border-(--border)
-                focus:border-(--foreground)/30 focus:outline-none focus:ring-4 focus:ring-(--foreground)/5
-                transition-all placeholder:text-(--muted-foreground) backdrop-blur-md"
+              className="w-full pl-10 pr-16 py-4 text-lg bg-transparent border-b-2 border-(--border)
+                focus:border-(--foreground) focus:outline-none rounded-none
+                transition-all placeholder:text-(--muted-foreground)/50 text-(--foreground)"
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="absolute right-2 p-2.5 rounded-full shrink-0
-                bg-(--foreground) text-(--background) 
-                disabled:opacity-30 disabled:scale-100 hover:scale-105
-                transition-all duration-200"
+              className="absolute right-2 p-2 text-(--muted-foreground) hover:text-(--foreground)
+                disabled:opacity-30 transition-colors duration-200"
               aria-label="Send message"
             >
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
-                <ArrowUp className="w-5 h-5" strokeWidth={3} />
+                <CornerDownLeft className="w-5 h-5" />
               )}
             </button>
           </form>

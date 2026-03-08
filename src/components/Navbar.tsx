@@ -39,7 +39,7 @@ export function Navbar() {
         transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-(--background)/80 backdrop-blur-xl border-b border-(--border)/50 shadow-sm"
+            ? "bg-(--background)/80 backdrop-blur-xl border-b border-(--border)/50"
             : "bg-transparent border-b border-transparent"
         }`}
       >
@@ -48,9 +48,9 @@ export function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="text-xl font-bold shrink-0 tracking-tighter text-(--foreground) hover:opacity-70 transition-opacity"
+              className="text-lg font-bold shrink-0 tracking-tighter text-(--foreground) hover:opacity-70 transition-opacity flex items-center gap-2"
             >
-              GS.
+              GS. <span className="font-mono text-xs font-normal text-(--muted-foreground) hidden sm:inline-block">{"// AI"}</span>
             </Link>
 
             {/* Desktop: mode switcher centered absolutely */}
@@ -59,7 +59,7 @@ export function Navbar() {
             </div>
 
             {/* Desktop: right side */}
-            <div className="hidden md:flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-4">
               <AnimatePresence>
                 {mode === "classic" && (
                   <motion.nav
@@ -68,15 +68,14 @@ export function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="flex items-center gap-1 mr-4"
+                    className="flex items-center gap-4 mr-4"
                   >
                     {navItems.map((item) => (
                       <a
                         key={item.href}
                         href={item.href}
-                        className="px-4 py-2 text-sm font-medium text-(--muted-foreground)
-                          hover:text-(--foreground) transition-colors rounded-full
-                          hover:bg-(--muted)/50"
+                        className="text-sm font-medium text-(--muted-foreground)
+                          hover:text-(--foreground) transition-colors"
                       >
                         {item.label}
                       </a>
@@ -119,14 +118,14 @@ export function Navbar() {
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="fixed inset-x-0 top-20 z-40 bg-(--background)/95 backdrop-blur-xl border-b border-(--border)/50 md:hidden shadow-lg"
           >
-            <nav className="flex flex-col p-6 gap-2">
+            <nav className="flex flex-col p-6 gap-4">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-base font-medium rounded-xl text-(--muted-foreground)
-                    hover:text-(--foreground) hover:bg-(--muted)/50 transition-colors"
+                  className="text-base font-medium text-(--muted-foreground)
+                    hover:text-(--foreground) transition-colors"
                 >
                   {item.label}
                 </a>
