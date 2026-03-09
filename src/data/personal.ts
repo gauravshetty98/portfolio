@@ -13,15 +13,16 @@ export const personal = {
   },
   education: {
     university: "Rutgers University",
+    location: "NJ, USA",
     degree: "Master of Science in Data Science",
     graduationDate: "May 2025",
     description:
-      "Built expertise in machine learning, statistical modeling, and data mining, focusing on AI, big data, time series predictions, and GIS applications.",
+      "Developed deep expertise in machine learning, statistical modeling, and data mining. Coursework and research focused heavily on Artificial Intelligence, big data processing, time series predictions, and GIS applications. Gained practical experience building predictive models, LLM-based pipelines, and deploying deep learning architectures for complex, real-world datasets.",
     logo: "/assets/rutgers.jpeg",
   },
   stats: [
     { label: "Years Experience", value: "4+" },
-    { label: "IEEE Publications", value: "2" },
-    { label: "Projects", value: "7+" },
+    { label: "Research Papers", value: "2" },
+    { label: "Models & Systems", value: "15+" },
   ],
 };

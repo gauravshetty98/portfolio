@@ -78,7 +78,7 @@ export function SharedHero() {
             transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
           >
             <span className="font-mono text-xs text-(--muted-foreground) tracking-widest uppercase border border-(--border) px-3 py-1 rounded-full bg-(--muted)/30">
-              System_Ready // v2.0
+              Entropy → Order
             </span>
           </motion.div>
 

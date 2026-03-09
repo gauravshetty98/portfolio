@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap } from "lucide-react";
 import { personal } from "@/data/personal";
 import { SectionHeading } from "./SectionHeading";
+import { basePath } from "@/lib/utils";
 
 export function About() {
   return (
@@ -37,22 +37,38 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-start gap-6 p-8 rounded-3xl bg-(--muted)/20 border border-(--border)/50"
+          className="w-full max-w-4xl"
         >
-          <div className="shrink-0 w-16 h-16 rounded-2xl bg-(--foreground) flex items-center justify-center">
-            <GraduationCap className="w-8 h-8 text-(--background)" />
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold tracking-tight text-(--foreground)">
-              {personal.education.university}
-            </h3>
-            <p className="text-lg font-medium text-(--muted-foreground) mt-1">
-              {personal.education.degree}
-            </p>
-            <p className="text-sm font-mono text-(--muted-foreground)/70 mt-2">
-              {personal.education.graduationDate}
-            </p>
-            <p className="text-base text-(--muted-foreground) mt-4 leading-relaxed font-light max-w-2xl">
+          <div className="group border border-(--border)/50 bg-(--muted)/10 rounded-none p-8 transition-colors hover:bg-(--muted)/20">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6">
+              <div className="w-16 h-16 rounded-none overflow-hidden shrink-0 border border-(--border)/50 bg-(--background) p-2">
+                <img
+                  src={basePath(personal.education.logo)}
+                  alt={personal.education.university}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h3 className="font-bold text-2xl tracking-tight text-(--foreground)">
+                  {personal.education.university}
+                </h3>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
+                  <p className="font-medium text-base text-(--foreground)">
+                    {personal.education.degree}
+                  </p>
+                  <span className="hidden sm:block text-(--muted-foreground)">•</span>
+                  <p className="text-sm font-mono text-(--muted-foreground)">
+                    {(personal.education as any).location}
+                  </p>
+                  <span className="hidden sm:block text-(--muted-foreground)">•</span>
+                  <p className="text-sm font-mono text-(--muted-foreground)">
+                    Class of {personal.education.graduationDate}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <p className="text-base text-(--muted-foreground) leading-relaxed font-light">
               {personal.education.description}
             </p>
           </div>
