@@ -10,6 +10,7 @@ import { ScrambleText } from "./ScrambleText";
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
   { label: "Publications", href: "#publications" },
   { label: "Contact", href: "#contact" },

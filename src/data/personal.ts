@@ -11,15 +11,30 @@ export const personal = {
     googleScholar:
       "https://scholar.google.com/citations?user=lbqhXNoAAAAJ&hl=en",
   },
-  education: {
-    university: "Rutgers University",
-    location: "NJ, USA",
-    degree: "Master of Science in Data Science",
-    graduationDate: "May 2025",
-    description:
-      "Developed deep expertise in machine learning, statistical modeling, and data mining. Coursework and research focused heavily on Artificial Intelligence, big data processing, time series predictions, and GIS applications. Gained practical experience building predictive models, LLM-based pipelines, and deploying deep learning architectures for complex, real-world datasets.",
-    logo: "/assets/rutgers.jpeg",
-  },
+  education: [
+    {
+      institution: "Rutgers University",
+      location: "NJ, USA",
+      degree: "Master of Science in Data Science",
+      graduationDate: "May 2025",
+      logo: "/assets/rutgers.jpeg",
+    },
+    {
+      institution: "Mumbai University",
+      location: "Mumbai, India",
+      degree: "Bachelor of Engineering in Information Technology",
+      graduationDate: "Aug 2020",
+      logo: "/assets/mumbai_universiy_logo.svg",
+    }
+  ],
+  certifications: [
+    {
+      name: "AWS Certified Solutions Architect",
+      issuer: "Amazon Web Services",
+      date: "",
+      logo: "/assets/aws.svg",
+    }
+  ],
   stats: [
     { label: "Years Experience", value: "4+" },
     { label: "Research Papers", value: "2" },

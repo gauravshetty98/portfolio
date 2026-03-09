@@ -10,6 +10,7 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { Publications } from "@/components/Publications";
 import { Skills } from "@/components/Skills";
+import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -85,6 +86,7 @@ export default function Home() {
         >
           <About />
           <ExperienceTimeline />
+          <Education />
           <ProjectGrid />
           <Publications />
           <Skills />

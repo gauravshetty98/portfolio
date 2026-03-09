@@ -108,11 +108,11 @@ export function ExperienceTimeline() {
 
                 <div className="group">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6">
-                    <div className="w-14 h-14 rounded-2xl overflow-hidden shrink-0 border border-(--border)/50 bg-(--muted)/20 p-2">
+                    <div className={`w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-(--border)/50 flex items-center justify-center ${exp.id === 'evercurrent' ? 'bg-white p-2' : 'bg-(--background)'}`}>
                       <img
                         src={basePath(exp.logo)}
                         alt={exp.company}
-                        className="w-full h-full object-contain transition-all duration-500"
+                        className={`w-full h-full transition-all duration-500 ${exp.id === 'evercurrent' ? 'object-contain' : 'object-cover scale-[1.15]'}`}
                       />
                     </div>
                     <div>
