@@ -6,6 +6,11 @@ import { CornerDownLeft, Loader2 } from "lucide-react";
 import { sendChatMessage } from "@/lib/chatApi";
 import { ScrambleText } from "./ScrambleText";
 
+interface ChatLandingProps {
+  exiting?: boolean;
+  onExitComplete?: () => void;
+}
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -18,12 +23,13 @@ const terminalPrompts = [
   { label: "grep publications", query: "What publications do you have?" },
 ];
 
-export function ChatLanding() {
+export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const exitCountRef = useRef(0);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -64,6 +70,22 @@ export function ChatLanding() {
 
   const hasMessages = messages.length > 0;
 
+  // When exiting, fire onExitComplete after all ScrambleText instances finish
+  // Chips only render when !hasMessages, so total is 4+2=6 or 2
+  const exitTotal = hasMessages ? 2 : 6;
+  function handleExitComplete() {
+    exitCountRef.current += 1;
+    if (exitCountRef.current >= exitTotal) {
+      exitCountRef.current = 0;
+      onExitComplete?.();
+    }
+  }
+
+  // Reset counter whenever exiting flips on
+  useEffect(() => {
+    if (exiting) exitCountRef.current = 0;
+  }, [exiting]);
+
   return (
     <div className="relative">
       {/* Chat messages canvas — only shown after first message */}
@@ -74,8 +96,12 @@ export function ChatLanding() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                animate={{
+                  opacity: exiting ? 0 : 1,
+                  y: exiting ? -10 : 0,
+                  filter: exiting ? "blur(5px)" : "blur(0px)"
+                }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
                 className="flex flex-col"
               >
                 {msg.role === "user" ? (
@@ -129,7 +155,8 @@ export function ChatLanding() {
                 key="prompts"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10, transition: { duration: 0.2 } }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
                 className="flex flex-wrap gap-2 mb-6"
               >
                 {terminalPrompts.map((prompt, i) => (
@@ -138,13 +165,20 @@ export function ChatLanding() {
                     onClick={() => handleSend(prompt.query)}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 + i * 0.07, duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+                    transition={{ delay: exiting ? 0 : 0.05 + i * 0.07, duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
                     className="text-xs font-mono px-3 py-1.5 rounded-md
                       border border-(--border)/50 bg-(--muted)/30
                       hover:border-(--foreground)/30 hover:text-(--foreground)
                       text-(--muted-foreground) transition-all duration-300"
                   >
-                    <ScrambleText text={prompt.label} animateOnMount delay={100 + i * 80} speed={25} />
+                    <ScrambleText
+                      text={prompt.label}
+                      animateOnMount
+                      delay={100 + i * 80}
+                      speed={25}
+                      exiting={exiting}
+                      onExitComplete={handleExitComplete}
+                    />
                   </motion.button>
                 ))}
               </motion.div>
@@ -152,7 +186,9 @@ export function ChatLanding() {
           </AnimatePresence>
 
           {/* Input line */}
-          <form
+          <motion.form
+            animate={{ opacity: exiting ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
@@ -160,7 +196,14 @@ export function ChatLanding() {
             className="relative flex items-center"
           >
             <div className="absolute left-0 text-(--muted-foreground) font-mono text-lg select-none">
-              <ScrambleText text=">" animateOnMount delay={300} speed={40} />
+              <ScrambleText
+                text=">"
+                animateOnMount
+                delay={300}
+                speed={40}
+                exiting={exiting}
+                onExitComplete={handleExitComplete}
+              />
             </div>
             <input
               ref={inputRef}
@@ -176,7 +219,14 @@ export function ChatLanding() {
             {/* Animated placeholder — only when input is empty */}
             {!input && (
               <span className="absolute left-6 top-1/2 -translate-y-1/2 text-lg text-(--muted-foreground)/40 pointer-events-none select-none">
-                <ScrambleText text="Ask anything..." animateOnMount delay={400} speed={20} />
+                <ScrambleText
+                  text="Ask anything..."
+                  animateOnMount
+                  delay={400}
+                  speed={20}
+                  exiting={exiting}
+                  onExitComplete={handleExitComplete}
+                />
               </span>
             )}
             <button
@@ -192,7 +242,7 @@ export function ChatLanding() {
                 <CornerDownLeft className="w-5 h-5" />
               )}
             </button>
-          </form>
+          </motion.form>
         </div>
       </div>
     </div>

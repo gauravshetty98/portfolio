@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Github, Linkedin, BookOpen, ArrowDown } from "lucide-react";
 import { personal } from "@/data/personal";
 import { useMode } from "./ModeProvider";
@@ -15,8 +15,8 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const CHAT_SUBTITLE = "I build intelligent systems and predictive models. Ask me anything below.";
-const CLASSIC_SUBTITLE = "Scroll to explore my work, experience, and skills.";
+const SUBTITLE =
+  "Currently building agentic systems at EverCurrent that plug into enterprise tools like Jira, GitHub, Teams, Outlook and more to solve coordination, visibility and knowledge retrieval.";
 
 const socialLinks = [
   { icon: Linkedin, href: personal.social.linkedin, label: "LinkedIn" },
@@ -24,18 +24,35 @@ const socialLinks = [
   { icon: BookOpen, href: personal.social.googleScholar, label: "Google Scholar" },
 ];
 
+type HintState = "hidden" | "visible" | "exiting";
+type NavState = "hidden" | "visible" | "exiting";
+
 export function SharedHero() {
   const { mode } = useMode();
-  const [showScrollHint, setShowScrollHint] = useState(false);
+  const [hintState, setHintState] = useState<HintState>("hidden");
+  const [navState, setNavState] = useState<NavState>("hidden");
+  const navExitCountRef = useRef(0);
 
-  const subtitle = mode === "chat" ? CHAT_SUBTITLE : CLASSIC_SUBTITLE;
-
-  // Delay the scroll indicator until after the scramble settles
   useEffect(() => {
-    setShowScrollHint(false);
+    setHintState((prev) => {
+      if (prev === "visible") return "exiting";
+      setTimeout(() => setHintState("visible"), 600);
+      return "hidden";
+    });
+
     if (mode === "classic") {
-      const t = setTimeout(() => setShowScrollHint(true), 600);
-      return () => clearTimeout(t);
+      // Entering classic — show nav after a short delay
+      setNavState("hidden");
+      setTimeout(() => setNavState("visible"), 300);
+    } else {
+      // Leaving classic — scramble nav out if it was visible
+      setNavState((prev) => {
+        if (prev === "visible") {
+          navExitCountRef.current = 0;
+          return "exiting";
+        }
+        return "hidden";
+      });
     }
   }, [mode]);
 
@@ -83,7 +100,7 @@ export function SharedHero() {
             transition={{ delay: 0.2, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
             className="text-lg text-(--muted-foreground) max-w-xl leading-relaxed font-light min-h-7"
           >
-            <ScrambleText text={subtitle} speed={30} />
+            <ScrambleText text={SUBTITLE} speed={30} />
           </motion.p>
 
           {/* Social links */}
@@ -107,68 +124,88 @@ export function SharedHero() {
             ))}
           </motion.div>
 
-          {/* Scroll indicator — only in classic mode, after scramble finishes */}
-          <AnimatePresence>
-            {showScrollHint && (
-              <motion.div
-                key="scroll-hint"
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="mt-8"
+          {/* Mode hint — "Ask me anything" in chat, "Scroll to explore" in classic */}
+          {hintState !== "hidden" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+              className="mt-8"
+            >
+              <a
+                href={mode === "classic" ? "#about" : undefined}
+                className="flex flex-col items-start gap-3 text-(--muted-foreground) hover:text-(--foreground) transition-colors"
               >
-                <a
-                  href="#about"
-                  className="flex flex-col items-start gap-3 text-(--muted-foreground) hover:text-(--foreground) transition-colors"
+                <span className="text-xs font-medium tracking-widest uppercase">
+                  <ScrambleText
+                    text={mode === "chat" ? "Ask me anything" : "Scroll to explore"}
+                    animateOnMount
+                    speed={25}
+                    exiting={hintState === "exiting"}
+                    onExitComplete={() => {
+                      setHintState("hidden");
+                      // Re-show after a short delay for the new mode
+                      setTimeout(() => setHintState("visible"), 600);
+                    }}
+                  />
+                </span>
+                <motion.div
+                  animate={{ opacity: hintState === "exiting" ? 0 : 1 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <span className="text-xs font-medium tracking-widest uppercase">
-                      <ScrambleText text="Scroll to explore" animateOnMount speed={25} />
-                    </span>
                   <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <ArrowDown className="w-5 h-5" />
                   </motion.div>
-                </a>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                </motion.div>
+              </a>
+            </motion.div>
+          )}
 
         </div>
       </div>
 
       {/* Right nav — mirrors navbar container so it aligns with ThemeToggle, classic mode only */}
-      <AnimatePresence>
-        {mode === "classic" && (
-          <div className="hidden md:block absolute inset-x-0 top-52 z-10 pointer-events-none">
-            <div className="max-w-6xl mx-auto px-6 lg:px-8 flex justify-end">
-              <motion.nav
-                key="hero-nav"
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 16 }}
-                transition={{ delay: 0.3, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                className="flex flex-col items-end gap-5 pointer-events-auto"
-              >
-                {navItems.map((item, i) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.06, duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                    className="text-sm font-medium text-(--muted-foreground) hover:text-(--foreground) transition-colors tracking-wide"
-                  >
-                    <ScrambleText text={item.label} animateOnMount delay={120 + i * 60} speed={30} />
-                  </motion.a>
-                ))}
-              </motion.nav>
-            </div>
+      {navState !== "hidden" && (
+        <div className="hidden md:block absolute inset-x-0 top-52 z-10 pointer-events-none">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8 flex justify-end">
+            <motion.nav
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+              className="flex flex-col items-end gap-5 pointer-events-auto"
+            >
+              {navItems.map((item, i) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.05 + i * 0.05, duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  className="text-sm font-medium text-(--muted-foreground) hover:text-(--foreground) transition-colors tracking-wide"
+                >
+                  <ScrambleText
+                    text={item.label}
+                    animateOnMount
+                    delay={80 + i * 50}
+                    speed={30}
+                    exiting={navState === "exiting"}
+                    onExitComplete={() => {
+                      navExitCountRef.current += 1;
+                      if (navExitCountRef.current >= navItems.length) {
+                        navExitCountRef.current = 0;
+                        setNavState("hidden");
+                      }
+                    }}
+                  />
+                </motion.a>
+              ))}
+            </motion.nav>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 }
