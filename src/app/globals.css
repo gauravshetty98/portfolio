@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #faf6f1;
+  --foreground: #3d2b1f;
+  --card: #f5ece3;
+  --card-foreground: #3d2b1f;
+  --muted: #ede0d4;
+  --muted-foreground: #8b6f5e;
+  --border: #d9c4b0;
+  --accent: #b5651d;
+  --accent-light: #cd853f;
+  --gradient-start: #b5651d;
+  --gradient-end: #cd853f;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --accent: #60a5fa;
+  --accent-light: #93c5fd;
+  --gradient-start: #3b82f6;
+  --gradient-end: #06b6d4;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 8s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent); }
+}
+
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--accent);
+  animation:
+    typing 3s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
