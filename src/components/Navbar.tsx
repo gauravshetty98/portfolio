@@ -51,7 +51,7 @@ export function Navbar() {
               href="/"
               className="text-lg font-bold shrink-0 tracking-tighter text-(--foreground) hover:opacity-70 transition-opacity flex items-center gap-2"
             >
-              GS. <span className="font-mono text-xs font-normal text-(--muted-foreground) hidden sm:inline-block">{"// AI"}</span>
+              GS. <span className="font-mono text-xs font-normal text-(--muted-foreground) hidden sm:inline-block">{"// AI Engineer"}</span>
             </Link>
 
             {/* Mode switcher — absolute center */}

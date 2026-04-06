@@ -20,11 +20,23 @@ export default function Home() {
   const { mode } = useMode();
   const [contentState, setContentState] = useState<ContentState>(mode);
   const isFirstRender = useRef(true);
+  const hasRestoredFromHash = useRef(false);
 
   useEffect(() => {
-    // Skip on initial mount — contentState is already initialised to mode
     if (isFirstRender.current) {
       isFirstRender.current = false;
+
+      const hash = window.location.hash;
+      const classicHashes = ["#about", "#experience", "#education", "#projects", "#publications", "#skills", "#contact"];
+      if (hash && classicHashes.includes(hash)) {
+        setContentState("classic");
+        hasRestoredFromHash.current = true;
+      }
+      return;
+    }
+
+    if (hasRestoredFromHash.current) {
+      hasRestoredFromHash.current = false;
       return;
     }
 
@@ -32,11 +44,9 @@ export default function Home() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Trigger scramble-out on the current content before switching
     setContentState((prev) => {
       if (prev === "chat") return "chat-exiting";
       if (prev === "classic") return "classic-exiting";
-      // Already exiting — ignore (will be resolved by onExitComplete)
       return prev;
     });
   }, [mode]);

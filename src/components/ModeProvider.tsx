@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 type Mode = "chat" | "classic";
 
@@ -12,8 +12,25 @@ interface ModeContextValue {
 
 const ModeContext = createContext<ModeContextValue | null>(null);
 
+const classicHashes = new Set([
+  "#about",
+  "#experience",
+  "#education",
+  "#projects",
+  "#publications",
+  "#skills",
+  "#contact",
+]);
+
 export function ModeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<Mode>("chat");
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && classicHashes.has(hash)) {
+      setMode("classic");
+    }
+  }, []);
 
   function toggleMode() {
     setMode((prev) => (prev === "chat" ? "classic" : "chat"));

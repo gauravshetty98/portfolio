@@ -85,11 +85,11 @@ export function Contact() {
             </div>
             <div>
               <h3 className="font-bold text-xl mb-2 tracking-tight">
-                Prefer chatting with AI?
+                Want to know more?
               </h3>
               <p className="text-sm text-(--background)/80 mb-4 font-light leading-relaxed">
-                Try GauravGPT — my AI-powered portfolio assistant that can answer
-                your questions about my projects, skills, and experience instantly.
+                Switch to conversation mode — ask questions about my projects,
+                skills, and experience and get answers instantly.
               </p>
               <button
                 onClick={() => setMode("chat")}
@@ -97,7 +97,7 @@ export function Contact() {
                   bg-(--background) text-(--foreground) hover:opacity-90 transition-opacity"
               >
                 <MessageSquare className="w-4 h-4" />
-                Chat with GauravGPT
+                Switch to Conversation Mode
               </button>
             </div>
           </div>

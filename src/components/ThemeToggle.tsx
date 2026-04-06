@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Moon, Coffee } from "lucide-react";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -14,13 +14,13 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(theme === "dark" ? "warm" : "dark")}
       className="relative w-9 h-9 flex items-center justify-center rounded-full
-        bg-[var(--muted)] hover:bg-[var(--border)] transition-colors"
+        bg-(--muted) hover:bg-(--border) transition-colors"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <Sun className="w-4 h-4 text-yellow-400" />
+        <Coffee className="w-4 h-4 text-amber-500" />
       ) : (
         <Moon className="w-4 h-4 text-slate-700" />
       )}
