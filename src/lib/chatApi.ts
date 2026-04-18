@@ -1,4 +1,4 @@
-const API_URL = "https://llm-connection.onrender.com";
+const API_URL = "/api/chat";
 
 export interface ChatResponse {
   query: string;
@@ -6,18 +6,28 @@ export interface ChatResponse {
 }
 
 export async function sendChatMessage(query: string): Promise<ChatResponse> {
-  const response = await fetch(`${API_URL}/ask`, {
+  const response = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    mode: "cors",
     cache: "no-cache",
-    credentials: "omit",
-    body: JSON.stringify({ query }),
+    credentials: "same-origin",
+    body: JSON.stringify({ message: query }),
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    const errText = await response.text().catch(() => "");
+    let message = errText || `${response.status} ${response.statusText}`;
+    try {
+      const parsed = JSON.parse(errText) as { error?: string; details?: string };
+      if (parsed.error) {
+        message = parsed.error;
+        if (parsed.details) message = `${message} (${parsed.details})`;
+      }
+    } catch {
+      // keep message as raw errText
+    }
+    throw new Error(message);
   }
 
-  return response.json();
+  return response.json() as Promise<ChatResponse>;
 }
