@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CornerDownLeft, Loader2 } from "lucide-react";
+import { CornerDownLeft } from "lucide-react";
 import { sendChatMessage } from "@/lib/chatApi";
 import { ScrambleText } from "./ScrambleText";
+import { ChatGeneratingIndicator } from "./ChatGeneratingIndicator";
+import { escapeHtml } from "@/lib/escapeHtml";
 
 interface ChatLandingProps {
   exiting?: boolean;
@@ -36,6 +38,11 @@ export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProp
   }, [messages]);
 
   useEffect(() => {
+    if (!loading) return;
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [loading]);
+
+  useEffect(() => {
     const timer = setTimeout(() => inputRef.current?.focus(), 300);
     return () => clearTimeout(timer);
   }, []);
@@ -54,13 +61,16 @@ export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProp
         ...prev,
         { role: "assistant", content: data.response },
       ]);
-    } catch {
+    } catch (err) {
+      const hint =
+        err instanceof Error
+          ? err.message
+          : "Unable to reach the chat API. Try again.";
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content:
-            "System error: Unable to connect to the LLM backend. Please try again later.",
+          content: `<p><strong>Could not get a reply.</strong></p><p>${escapeHtml(hint)}</p>`,
         },
       ]);
     } finally {
@@ -121,7 +131,7 @@ export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProp
                         [&_ul]:ml-4 [&_ul]:list-disc [&_li]:mb-2
                         [&_strong]:text-(--foreground) [&_strong]:font-medium
                         [&_a]:text-(--foreground) [&_a]:underline [&_a]:underline-offset-4
-                        [&_a]:decoration-(--border) hover:[&_a]:decoration-(--foreground) [&_a]:transition-colors"
+                        [&_a]:decoration-(--border) [&_a:hover]:decoration-(--foreground) [&_a]:transition-colors"
                       dangerouslySetInnerHTML={{ __html: msg.content }}
                     />
                   </div>
@@ -129,16 +139,11 @@ export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProp
               </motion.div>
             ))}
 
-            {loading && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex items-center gap-3 text-sm font-mono text-(--muted-foreground)"
-              >
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span className="animate-pulse">[ GENERATING_RESPONSE... ]</span>
-              </motion.div>
-            )}
+            <AnimatePresence mode="wait">
+              {loading && (
+                <ChatGeneratingIndicator key="generating" variant="landing" />
+              )}
+            </AnimatePresence>
             <div ref={chatEndRef} />
           </div>
         </div>
@@ -237,7 +242,24 @@ export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProp
               aria-label="Send message"
             >
               {loading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <motion.span
+                  className="inline-flex p-2 font-mono text-sm text-(--muted-foreground)"
+                  initial={{ opacity: 0, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+                  aria-label="Sending"
+                >
+                  <motion.span
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{
+                      duration: 1.15,
+                      repeat: Infinity,
+                      ease: [0.23, 1, 0.32, 1],
+                    }}
+                  >
+                    ···
+                  </motion.span>
+                </motion.span>
               ) : (
                 <CornerDownLeft className="w-5 h-5" />
               )}

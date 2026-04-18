@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Loader2 } from "lucide-react";
+import { MessageSquare, X, Send } from "lucide-react";
 import { sendChatMessage } from "@/lib/chatApi";
+import { escapeHtml } from "@/lib/escapeHtml";
+import { ChatGeneratingIndicator } from "./ChatGeneratingIndicator";
 
 interface Message {
   role: "user" | "assistant";
@@ -27,6 +29,11 @@ export function ChatWidget() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  useEffect(() => {
+    if (!loading) return;
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [loading]);
+
   async function handleSend(text?: string) {
     const query = text || input.trim();
     if (!query || loading) return;
@@ -41,12 +48,14 @@ export function ChatWidget() {
         ...prev,
         { role: "assistant", content: data.response },
       ]);
-    } catch {
+    } catch (err) {
+      const hint =
+        err instanceof Error ? err.message : "Please try again later.";
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: "Sorry, I'm having trouble connecting right now. Please try again later.",
+          content: `<p>Sorry — something went wrong.</p><p>${escapeHtml(hint)}</p>`,
         },
       ]);
     } finally {
@@ -159,27 +168,11 @@ export function ChatWidget() {
                 </motion.div>
               ))}
 
-              {loading && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex justify-start"
-                >
-                  <div className="bg-[var(--muted)] px-4 py-3 rounded-2xl rounded-bl-md">
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 rounded-full bg-[var(--muted-foreground)] animate-bounce" />
-                      <div
-                        className="w-2 h-2 rounded-full bg-[var(--muted-foreground)] animate-bounce"
-                        style={{ animationDelay: "0.15s" }}
-                      />
-                      <div
-                        className="w-2 h-2 rounded-full bg-[var(--muted-foreground)] animate-bounce"
-                        style={{ animationDelay: "0.3s" }}
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
+              <AnimatePresence mode="wait">
+                {loading && (
+                  <ChatGeneratingIndicator key="generating" variant="widget" />
+                )}
+              </AnimatePresence>
 
               <div ref={chatEndRef} />
             </div>
@@ -211,7 +204,24 @@ export function ChatWidget() {
                     hover:opacity-90 transition-opacity"
                 >
                   {loading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <motion.span
+                      className="inline-flex h-4 w-4 items-center justify-center font-mono text-[10px] leading-none text-white"
+                      initial={{ opacity: 0, filter: "blur(3px)" }}
+                      animate={{ opacity: 1, filter: "blur(0px)" }}
+                      transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                      aria-label="Sending"
+                    >
+                      <motion.span
+                        animate={{ opacity: [0.45, 1, 0.45] }}
+                        transition={{
+                          duration: 1.1,
+                          repeat: Infinity,
+                          ease: [0.23, 1, 0.32, 1],
+                        }}
+                      >
+                        ···
+                      </motion.span>
+                    </motion.span>
                   ) : (
                     <Send className="w-4 h-4" />
                   )}
