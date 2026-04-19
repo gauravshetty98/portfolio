@@ -60,7 +60,7 @@ export function SharedHero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-dvh overflow-hidden"
     >
       {/* Shared Background Grid & Vignette */}
       <div className="absolute inset-0 pointer-events-none">
@@ -69,8 +69,8 @@ export function SharedHero() {
       </div>
 
       {/* Hero content — aligned with chat bar (max-w-3xl) */}
-      <div className="max-w-3xl w-full mx-auto px-6 pt-32 z-10 relative">
-        <div className="flex flex-col items-start gap-6 mt-12 mb-16">
+      <div className="max-w-3xl w-full mx-auto px-6 pt-20 sm:pt-32 z-10 relative">
+        <div className="flex flex-col items-start gap-3 sm:gap-6 mt-4 sm:mt-12 mb-16">
 
           {/* Identity pill */}
           <motion.div
@@ -99,7 +99,7 @@ export function SharedHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-            className="text-lg text-(--muted-foreground) max-w-xl leading-relaxed font-light min-h-7"
+            className="text-sm sm:text-lg text-(--muted-foreground) max-w-xl leading-relaxed font-light line-clamp-3 sm:line-clamp-none"
           >
             <ScrambleText text={SUBTITLE} speed={30} />
           </motion.p>
@@ -125,13 +125,13 @@ export function SharedHero() {
             ))}
           </motion.div>
 
-          {/* Mode hint — "Ask me anything" in chat, "Scroll to explore" in classic */}
+          {/* Mode hint — hidden on mobile in chat mode (input is already visible), shown on desktop and always in classic */}
           {hintState !== "hidden" && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-              className="mt-8"
+              className={`mt-8 ${mode === "chat" ? "hidden sm:block" : ""}`}
             >
               <a
                 href={mode === "classic" ? "#about" : undefined}

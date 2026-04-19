@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -9,6 +9,10 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
+
+export const viewport: Viewport = {
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "Gaurav Shetty | AI Engineer & Data Scientist",
@@ -27,7 +31,7 @@ export default function RootLayout({
         <ThemeProvider>
           <ModeProvider>
             <Navbar />
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-[100dvh]">{children}</main>
           </ModeProvider>
         </ThemeProvider>
       </body>

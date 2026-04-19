@@ -88,7 +88,7 @@ export function Contact() {
                 Want to know more?
               </h3>
               <p className="text-sm text-(--background)/80 mb-4 font-light leading-relaxed">
-                Switch to conversation mode — ask questions about my projects,
+                Switch to conversation mode and ask questions about my projects,
                 skills, and experience and get answers instantly.
               </p>
               <button
