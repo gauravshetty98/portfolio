@@ -60,7 +60,7 @@ export function SharedHero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-dvh overflow-hidden"
     >
       {/* Shared Background Grid & Vignette */}
       <div className="absolute inset-0 pointer-events-none">
@@ -70,7 +70,7 @@ export function SharedHero() {
 
       {/* Hero content — aligned with chat bar (max-w-3xl) */}
       <div className="max-w-3xl w-full mx-auto px-6 pt-32 z-10 relative">
-        <div className="flex flex-col items-start gap-6 mt-12 mb-16">
+        <div className={`flex flex-col items-start gap-6 mt-12 ${mode === "chat" ? "mb-52" : "mb-16"}`}>
 
           {/* Identity pill */}
           <motion.div

@@ -150,7 +150,10 @@ export function ChatLanding({ exiting = false, onExitComplete }: ChatLandingProp
       )}
 
       {/* Fixed bottom input bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-(--background) via-(--background)/90 to-transparent pb-8 pt-12 pointer-events-none">
+      <div
+        className="fixed bottom-0 left-0 right-0 z-20 bg-linear-to-t from-(--background) via-(--background)/90 to-transparent pt-12 pointer-events-none"
+        style={{ paddingBottom: "calc(2rem + env(safe-area-inset-bottom))" }}
+      >
         <div className="max-w-3xl mx-auto px-6 pointer-events-auto">
 
           {/* Quick prompt chips — only before first message */}
